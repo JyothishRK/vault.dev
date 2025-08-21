@@ -1,4 +1,3 @@
-# Chi – Beginner Guide  
 
 ## What is Chi?  
 * Chi is a lightweight, idiomatic HTTP router for Go.  
