@@ -58,11 +58,11 @@
 To deploy a Node.js 20 runtime HTTP-triggered function in region `me-central2`:
 
 ```sh
-gcloud functions deploy gcs-poc \
-  --gen2 \
-  --runtime=nodejs20 \
-  --trigger-http \
-  --allow-unauthenticated \
+gcloud functions deploy gcs-poc ^
+  --gen2 ^
+  --runtime=nodejs20 ^
+  --trigger-http ^
+  --allow-unauthenticated ^
   --region=me-central2
 ```
 
