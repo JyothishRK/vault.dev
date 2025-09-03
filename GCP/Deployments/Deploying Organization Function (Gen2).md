@@ -1,5 +1,5 @@
 
-
+---
 
 ## 1. Overview
 
@@ -14,13 +14,29 @@ It also covers configuring access to **private npm packages** stored in **Google
     
 2. Authenticate with Google account:
     
-    ```sh
+    **bash**
+    
+    ```bash
+    gcloud auth login
+    ```
+    
+    **cmd.exe**
+    
+    ```cmd
     gcloud auth login
     ```
     
 3. Set the active project:
     
-    ```sh
+    **bash**
+    
+    ```bash
+    gcloud config set project PROJECT_ID
+    ```
+    
+    **cmd.exe**
+    
+    ```cmd
     gcloud config set project PROJECT_ID
     ```
     
@@ -44,7 +60,15 @@ always-auth=true
 
 Get the token using:
 
-```sh
+**bash**
+
+```bash
+gcloud auth print-access-token
+```
+
+**cmd.exe**
+
+```cmd
 gcloud auth print-access-token
 ```
 
@@ -56,7 +80,9 @@ Replace `YOUR_GCP_ACCESS_TOKEN` in `.npmrc` with the value returned.
 
 Run the following command to deploy the function for the first time:
 
-```sh
+**bash**
+
+```bash
 gcloud functions deploy organisation \
   --gen2 \
   --runtime=nodejs20 \
@@ -65,6 +91,20 @@ gcloud functions deploy organisation \
   --region=me-central2 \
   --source . \
   --entry-point=organisation \
+  --set-build-env-vars NPM_CONFIG_LEGACY_PEER_DEPS=true
+```
+
+**cmd.exe**
+
+```cmd
+gcloud functions deploy organisation ^
+  --gen2 ^
+  --runtime=nodejs20 ^
+  --trigger-http ^
+  --allow-unauthenticated ^
+  --region=me-central2 ^
+  --source . ^
+  --entry-point=organisation ^
   --set-build-env-vars NPM_CONFIG_LEGACY_PEER_DEPS=true
 ```
 
@@ -72,9 +112,11 @@ gcloud functions deploy organisation \
 
 ## 5. Updating / Redeploying
 
-After making code changes, redeploy the function using the same command:
+After making code changes, redeploy the function using the same command.
 
-```sh
+**bash**
+
+```bash
 gcloud functions deploy organisation \
   --gen2 \
   --runtime=nodejs20 \
@@ -86,7 +128,19 @@ gcloud functions deploy organisation \
   --set-build-env-vars NPM_CONFIG_LEGACY_PEER_DEPS=true
 ```
 
-> **Tip**: Only the changed code will be uploaded. GCP rebuilds the container with updated dependencies (using `.npmrc`).
+**cmd.exe**
+
+```cmd
+gcloud functions deploy organisation ^
+  --gen2 ^
+  --runtime=nodejs20 ^
+  --trigger-http ^
+  --allow-unauthenticated ^
+  --region=me-central2 ^
+  --source . ^
+  --entry-point=organisation ^
+  --set-build-env-vars NPM_CONFIG_LEGACY_PEER_DEPS=true
+```
 
 ---
 
@@ -94,19 +148,43 @@ gcloud functions deploy organisation \
 
 1. List deployed functions:
     
-    ```sh
+    **bash**
+    
+    ```bash
+    gcloud functions list --region=me-central2
+    ```
+    
+    **cmd.exe**
+    
+    ```cmd
     gcloud functions list --region=me-central2
     ```
     
 2. Get the HTTPS trigger URL:
     
-    ```sh
+    **bash**
+    
+    ```bash
+    gcloud functions describe organisation --region=me-central2 --format="value(serviceConfig.uri)"
+    ```
+    
+    **cmd.exe**
+    
+    ```cmd
     gcloud functions describe organisation --region=me-central2 --format="value(serviceConfig.uri)"
     ```
     
 3. Test the function:
     
-    ```sh
+    **bash**
+    
+    ```bash
+    curl https://YOUR_CLOUD_FUNCTION_URL
+    ```
+    
+    **cmd.exe**
+    
+    ```cmd
     curl https://YOUR_CLOUD_FUNCTION_URL
     ```
     
