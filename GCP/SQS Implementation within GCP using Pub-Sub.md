@@ -1,8 +1,6 @@
 
 ---
 
-
-
 ## 1. Objective
 
 To replicate **AWS SQS Producer → Queue → Consumer** pattern within **Google Cloud Platform** using **Pub/Sub** (closest managed equivalent). This POC demonstrates:
