@@ -11,3 +11,7 @@ gcloud compute networks vpc-access connectors create me-2-uat-vpc-conn-redis ^
   --max-instances=10
 ```
 
+```
+gcloud functions deploy redisHandler --gen2 --runtime=nodejs20 --region=me-central2 --entry-point=redisHandler --source=. --trigger-http --allow-unauthenticated --vpc-connector=me-2-uat-vpc-conn-redis
+```
+

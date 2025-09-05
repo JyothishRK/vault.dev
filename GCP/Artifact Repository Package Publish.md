@@ -69,3 +69,13 @@ gcloud artifacts repositories create me-2-uat-ar-packages \
 ```
 
 ***
+
+```
+for /f "tokens=*" %i in ('gcloud auth print-access-token') do set NPM_TOKEN=%i
+```
+
+```
+for /D %i in (*) do (if not "%i"=="@ioredis" (echo Processing %i && cd "%i" && npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts 2>&1 | findstr /C:"already exists" >nul && echo ℹ Package %i already exists - skipping || echo ✓ Successfully published %i && cd ..))
+```
+
+ansi-escapes
