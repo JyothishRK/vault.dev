@@ -83,15 +83,15 @@ ansi-escapes
 ```
 cd "D:\Work\gcp-packages"
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6Ny5WtP3VOuvP4s5mijWmj29Qaj8TxykydZBJ8DTdrmYaAL8WjO4rVU2Iz_sdrADU5SywlNlFTtj2ezFvKgmg-CpUqXsroD5S5W1PVAAs3piWXw7EhBz3o2OOEVxmjrm9c9htB3yHXPD0moX0ZzB7sbfdDyV9fn3lPLh8y0LSpl551Nf_UC3pO6exlVOwd4rQdZNwtutiwaCgYKASUSARASFQHGX2MitztvIOntbQhqdMWOkzbT1w0213
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NzwvwXGwsPWta6MW8kwPO5sXpbdhjOaONu5QuNMuKFI5C1m8LF_7GRtj2ORw6GoNOaeqZwxS6_kBjWgLPdLsOmNlUUflt_jKil60yW2sHVQwyATWQkIMVEnfAxkmOQDDqQ_2Kd5cG_hTNhHgFhCTbfr_VbQ1y4skPfSpsrNeOaJp4n4pgFsDuxqX5njltqZAYwoYY-voAaCgYKAeUSARASFQHGX2MijbkuZxYqloEBnLyiXu0f6w0213
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install yargs-parser@13.3.2
+npm install yargs@13.3.2
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules\yargs-parser
+cd node_modules\yargs
 
 npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
