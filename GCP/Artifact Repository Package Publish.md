@@ -79,3 +79,20 @@ for /D %i in (*) do (if not "%i"=="@ioredis" (echo Processing %i && cd "%i" && n
 ```
 
 ansi-escapes
+
+```
+cd "D:\Work\gcp-packages"
+
+Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
+
+npm install update-notifier@5.1.0
+
+Rename-Item .npmrc.backup .npmrc
+
+cd node_modules\update-notifier
+
+npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
+
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NxLh0UREiw0O8368rV1jqhPrazodtA74T3Y7MwZQv0dUipemGW71ymKrUQNwcjW2z5GOTZHqJrfCyrFYF-aDk2cxSVYjLut-2sgrqd9iZZL9f1Vs2M4ygt1HA1bCC7Q6dpp5PuOikL39vDFBTjD6cfzbaXNisLdtsqJCF3ltf4-DxbdBq6B4ZwXHo2d11_pNZAJNQboiQaCgYKAZESARASFQHGX2MiwOEZb_CyoyG9cyXpnHR-Fw0213
+```
+
