@@ -85,14 +85,14 @@ cd "D:\Work\gcp-packages"
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install uid-safe@2.1.5
+npm install test-exclude@6.0.0
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules\uid-safe
+cd node_modules\test-exclude
 
 npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NwX9IreoEJ4DvIGMFPQ43y_5w_l4vdLS7GQQmyz3AlkSQ8FOvdE6xA9DxPALlvCAHDWkOsuuENaVnfg94EjHVRoXsUmDW--2y81nq9n5KwTPkUfiq5_x1bf1XRZp4os4cbhkY8jAwlrrMX_3ybtNULi_8CoB9GttCRCmLeiMHkOlnienGZETzwQFsNUBFbd8oIQP7LmBgaCgYKAY4SARASFQHGX2Mi6W5y6GHEeGZXCaW7VQpl5Q0213
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6Nw9Y8yqagQwvuYj6K9TEHcbWfQDIK2JWPbs916kZbfElZnkc7jdvrDSIeIeYe1UOQxP47wz0ClDxcAN7Olg_37pU7YOl2Jp6NZwioApljWp8Z4fRJ_1dmxmDiEvg6NHdotwEzXCSQ0zmxGOI7t6a7nNYujKkq2CAv_E4riM8HjcVQjRK8CNZa7Ktp9n0yQalaK8chFklQaCgYKAbMSARASFQHGX2Min6YFLtHRTr6j8GuQaNcHWQ0213
 ```
 
