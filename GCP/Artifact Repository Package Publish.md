@@ -83,16 +83,17 @@ ansi-escapes
 ```
 cd "D:\Work\gcp-packages"
 
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6Ny5WtP3VOuvP4s5mijWmj29Qaj8TxykydZBJ8DTdrmYaAL8WjO4rVU2Iz_sdrADU5SywlNlFTtj2ezFvKgmg-CpUqXsroD5S5W1PVAAs3piWXw7EhBz3o2OOEVxmjrm9c9htB3yHXPD0moX0ZzB7sbfdDyV9fn3lPLh8y0LSpl551Nf_UC3pO6exlVOwd4rQdZNwtutiwaCgYKASUSARASFQHGX2MitztvIOntbQhqdMWOkzbT1w0213
+
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install test-exclude@6.0.0
+npm install yargs-parser@13.3.2
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules\test-exclude
+cd node_modules\yargs-parser
 
 npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6Nw9Y8yqagQwvuYj6K9TEHcbWfQDIK2JWPbs916kZbfElZnkc7jdvrDSIeIeYe1UOQxP47wz0ClDxcAN7Olg_37pU7YOl2Jp6NZwioApljWp8Z4fRJ_1dmxmDiEvg6NHdotwEzXCSQ0zmxGOI7t6a7nNYujKkq2CAv_E4riM8HjcVQjRK8CNZa7Ktp9n0yQalaK8chFklQaCgYKAbMSARASFQHGX2Min6YFLtHRTr6j8GuQaNcHWQ0213
 ```
 
