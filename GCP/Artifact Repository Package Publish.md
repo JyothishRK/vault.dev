@@ -79,19 +79,20 @@ for /D %i in (*) do (if not "%i"=="@ioredis" (echo Processing %i && cd "%i" && n
 ```
 
 ansi-escapes
+global.js -> layers?
 
 ```
 cd "D:\Work\gcp-packages"
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NzwvwXGwsPWta6MW8kwPO5sXpbdhjOaONu5QuNMuKFI5C1m8LF_7GRtj2ORw6GoNOaeqZwxS6_kBjWgLPdLsOmNlUUflt_jKil60yW2sHVQwyATWQkIMVEnfAxkmOQDDqQ_2Kd5cG_hTNhHgFhCTbfr_VbQ1y4skPfSpsrNeOaJp4n4pgFsDuxqX5njltqZAYwoYY-voAaCgYKAeUSARASFQHGX2MijbkuZxYqloEBnLyiXu0f6w0213
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NwSC6HXNRbQNRgPazu3GKPTdN6Amg3CFP5azIcYK5KvMPeCvYoBUung6qvvu6jGRTBsOEoLZ9gse48fGQBJSVR9EhRV1H5qcJHEhpaDanwuC09FZlk-uObU31ko-37Vf3t3Yp5Sbyb0Beixb6Nrk0c19gbH73xrmtd7EEUUdlj9wcriSVwqTKJ9eq5GiaiBZVSNFKDiggaCgYKAaUSARASFQHGX2Mihq3WetKUebOpy8aYtWpH4A0213
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install yargs@13.3.2
+npm install @babel/traverse@7.7.0
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules\yargs
+cd node_modules/@babel/traverse
 
 npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
