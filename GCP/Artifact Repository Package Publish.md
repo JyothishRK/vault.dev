@@ -88,11 +88,11 @@ npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authTok
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install @babel/traverse@7.7.0
+npm install nopt@4.0.3
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules/@babel/traverse
+cd node_modules/nopt
 
 npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
