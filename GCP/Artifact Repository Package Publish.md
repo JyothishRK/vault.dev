@@ -84,7 +84,7 @@ global.js -> layers?
 ```
 cd "D:\Work\gcp-packages"
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6Ny93jjaWICePqshBVOO6lrtv7I5fHJANqiLMgk_yg2xTE6ELHVzEpV34KusSsodn5yXIag-heJW6fm6tU3RVvtgXOgZT0uLijnWkkzBYtBSV_vdVcQV4Yerq-dD-zT2Xuw6-OvDgAjJdxmfl0QG_CEvzps1yBgze3WO3MsbgtZA5E2SRw5x1_gEo6LPBrnO59bn_p-NSQaCgYKAe0SARASFQHGX2MiRjsft4sMDSsrOPQaGiXrOg0213
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-vendors/:_authToken ya29.a0AS3H6Ny93jjaWICePqshBVOO6lrtv7I5fHJANqiLMgk_yg2xTE6ELHVzEpV34KusSsodn5yXIag-heJW6fm6tU3RVvtgXOgZT0uLijnWkkzBYtBSV_vdVcQV4Yerq-dD-zT2Xuw6-OvDgAjJdxmfl0QG_CEvzps1yBgze3WO3MsbgtZA5E2SRw5x1_gEo6LPBrnO59bn_p-NSQaCgYKAe0SARASFQHGX2MiRjsft4sMDSsrOPQaGiXrOg0213
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
@@ -94,7 +94,7 @@ Rename-Item .npmrc.backup .npmrc
 
 cd node_modules/events
 
-npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
+npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-vendors/ --ignore-scripts
 
 ```
 
