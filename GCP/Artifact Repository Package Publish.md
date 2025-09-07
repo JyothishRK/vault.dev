@@ -84,17 +84,21 @@ global.js -> layers?
 ```
 cd "D:\Work\gcp-packages"
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NwcdIfloe1_nettOBen4H2gUVgeeMGVP2S8XU8KqLJNGrj8eUStRCO13Uwkdqjff0dYME6W-iYsmW0TRmNXBRgHO5ucCExE15fQBozLgYeuiU-Cnt7BCbbQcW8mQK4fYfD1mR1F1Aik31ubyUfTJwVpy1jFDVpvOu2K6pT11derNIWTjmKxd8nhomjYHVkLEH9ffO5oyQaCgYKAdASARASFQHGX2Mih_kkKnnzNkaX4v8cEPnI6A0213
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6Ny93jjaWICePqshBVOO6lrtv7I5fHJANqiLMgk_yg2xTE6ELHVzEpV34KusSsodn5yXIag-heJW6fm6tU3RVvtgXOgZT0uLijnWkkzBYtBSV_vdVcQV4Yerq-dD-zT2Xuw6-OvDgAjJdxmfl0QG_CEvzps1yBgze3WO3MsbgtZA5E2SRw5x1_gEo6LPBrnO59bn_p-NSQaCgYKAe0SARASFQHGX2MiRjsft4sMDSsrOPQaGiXrOg0213
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install mkdirp@0.5.5
+npm install events@1.1.1
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules/mkdirp
+cd node_modules/events
 
 npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
+```
+
+```
+gcloud functions deploy organisation-gcp --runtime nodejs22 --trigger-http --allow-unauthenticated --region me-central2 --entry-point handler --source .
 ```
 
