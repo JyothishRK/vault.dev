@@ -84,17 +84,17 @@ global.js -> layers?
 ```
 cd "D:\Work\gcp-packages"
 
-npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-vendors/:_authToken ya29.a0AS3H6Ny93jjaWICePqshBVOO6lrtv7I5fHJANqiLMgk_yg2xTE6ELHVzEpV34KusSsodn5yXIag-heJW6fm6tU3RVvtgXOgZT0uLijnWkkzBYtBSV_vdVcQV4Yerq-dD-zT2Xuw6-OvDgAjJdxmfl0QG_CEvzps1yBgze3WO3MsbgtZA5E2SRw5x1_gEo6LPBrnO59bn_p-NSQaCgYKAe0SARASFQHGX2MiRjsft4sMDSsrOPQaGiXrOg0213
+npm config set //me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/:_authToken ya29.a0AS3H6NxB1ie_LpCz66JexZoz9Zotmw6amCT0ZJN-FcAmenaEP0BJNYh5AHpoyfSPeSMXIezYabWUyfplhXs43LOxTsE48Mlru92g0oG4z-P-kgtMSU3yQ2UpXpaVjg7YGvlTDNFjaoQoyC9PZd5_168MBm_yW0CSZQxmg5M3qOlisEIxJ8hLJtMEAuF2MxqTT41aDjmkf-9j6waCgYKAVESARASFQHGX2MiabIwvgT6sc68vXXXUTXCtg0213
 
 Rename-Item .npmrc .npmrc.backup -ErrorAction SilentlyContinue
 
-npm install events@1.1.1
+npm install mkdirp@^1.0.4
 
 Rename-Item .npmrc.backup .npmrc
 
-cd node_modules/events
+cd node_modules/mkdirp
 
-npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-vendors/ --ignore-scripts
+npm publish --registry=https://me-central2-npm.pkg.dev/me-2-uat/me-2-uat-ar-packages/ --ignore-scripts
 
 ```
 

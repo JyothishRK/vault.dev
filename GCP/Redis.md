@@ -25,7 +25,7 @@ gcloud functions deploy organisation-gcp ^
   --source=. ^
   --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true ^
   --vpc-connector=me-2-uat-vpc-conn-redis ^
-	  --egress-settings=all
+  --egress-settings=all
 ```
 
 Org lambda Issues:
