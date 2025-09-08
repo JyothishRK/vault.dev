@@ -27,3 +27,8 @@ gcloud functions deploy organisation-gcp ^
   --vpc-connector=me-2-uat-vpc-conn-redis ^
 	  --egress-settings=all
 ```
+
+Org lambda Issues:
+1. Header Response issue
+2. 504 Error for API
+3. Run in Local?
