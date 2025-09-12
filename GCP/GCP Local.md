@@ -12,7 +12,7 @@ $env:GOOGLE_APPLICATION_CREDENTIALS = "D:\GCP\gcp-b-all\organisation\keys.json"
 NotifySails - Data Sync
 
 ```
-gcloud functions deploy notifySailsOnDataSync --runtime=nodejs20 --trigger-topic=me-2-uat-queue--data-sync --region=me-central2 --entry-point=sailsNotifyPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=all
+gcloud functions deploy notify-sails-queue --runtime=nodejs20 --trigger-topic=me-2-uat-queue--data-sync --region=me-central2 --entry-point=sailsNotifyPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=all
 ```
 
 URL: https://me-central2-me-2-uat.cloudfunctions.net/notifySailsOnDataSync
