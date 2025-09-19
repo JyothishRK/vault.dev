@@ -18,3 +18,5 @@ You can run this command to run:`nohup java -jar java-2023/build/libs/ej2-webser
 
 ## Current AWS Setup:
 
+`LB -> Target group -> Registered Target : vm -> non-prod-all:port
+
