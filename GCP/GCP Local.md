@@ -12,7 +12,7 @@ $env:GOOGLE_APPLICATION_CREDENTIALS = "D:\GCP\gcp-b-all\organisation\keys.json"
 NotifySails - Data Sync
 
 ```
-gcloud functions deploy notify-sails-queue --runtime=nodejs20 --trigger-topic=me-2-uat-queue--data-sync --region=me-central2 --entry-point=sailsNotifyPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=all
+gcloud functions deploy notify-sails-queue --runtime=nodejs20 --trigger-topic=me-2-uat-queue--data-sync --region=me-central2 --entry-point=sailsNotifyPubSub --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=all
 ```
 
 URL: https://me-central2-me-2-uat.cloudfunctions.net/notifySailsOnDataSync
@@ -42,4 +42,14 @@ gcloud functions deploy organisation --runtime=nodejs20 --trigger-http --allow-u
 
 ```
 gcloud functions deploy policy --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
+```
+
+
+Env
+```
+	FEATURE_FLAG_URL: devapi.v-comply.com
+    LOG_EXECUTION_ID: 'true'
+    NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
+    PROJECT_ID: me-2-uat
+    SECRET_NAME: me-2-uat-secret
 ```
