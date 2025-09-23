@@ -61,4 +61,7 @@ gcloud functions deploy report-download-excel --runtime=nodejs20 --trigger-http 
 ```
 
 
-"profile_pic": ((memberDtls[i].profile_pic) ? AWS_STORAGE_DETAILS.s3_url + "/profile_pic/thumb/" + memberDtls[i].profile_pic : ''),
+### Globals
+
+```
+gcloud functions deploy globals --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
