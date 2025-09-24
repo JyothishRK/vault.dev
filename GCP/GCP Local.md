@@ -47,11 +47,11 @@ gcloud functions deploy policy --runtime=nodejs20 --trigger-http --allow-unauthe
 
 Env
 ```
-	FEATURE_FLAG_URL: devapi.v-comply.com
-    LOG_EXECUTION_ID: 'true'
-    NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
-    PROJECT_ID: me-2-uat
-    SECRET_NAME: me-2-uat-secret
+FEATURE_FLAG_URL: devapi.v-comply.com
+LOG_EXECUTION_ID: 'true'
+NPM_CONFIG_LEGACY_PEER_DEPS: 'true'
+PROJECT_ID: me-2-uat
+SECRET_NAME: me-2-uat-secret
 ```
 
 ### Report Download Excel
