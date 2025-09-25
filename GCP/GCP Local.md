@@ -65,3 +65,12 @@ gcloud functions deploy report-download-excel --runtime=nodejs20 --trigger-http 
 
 ```
 gcloud functions deploy globals --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
+
+
+
+
+
+last row = F
+header => Remove from array
+Comment 7, 8
+resp owner, visibility key
