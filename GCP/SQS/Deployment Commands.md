@@ -35,5 +35,10 @@ Report Download Excel
 
 ```
 gcloud functions deploy report-download-excel --runtime=nodejs20 --trigger-topic=me-2-uat-queue--report-download-excel --region=me-central2 --entry-point=reportDownloadExcelPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
+```
 
+Report Download PDF
+
+```
+gcloud functions deploy report-download-pdf --runtime=nodejs20 --trigger-topic=me-2-uat-queue--report-download-pdf --region=me-central2 --entry-point=reportDownloadPdfPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
 ```
