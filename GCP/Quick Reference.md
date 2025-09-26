@@ -41,7 +41,7 @@
 - **Set a default project**
     
     ```sh
-    gcloud config set project PROJECT_ID
+    gcloud config set project me-2-prod
     ```
     
     Example:

@@ -32,3 +32,16 @@ Org lambda Issues:
 1. Header Response issue
 2. 504 Error for API
 3. Run in Local?
+
+
+Production
+
+```
+gcloud compute networks vpc-access connectors create me-2-prod-vpc-connector `
+  --region=me-central2 `
+  --network=me-2-prod-vpc `
+  --range=10.10.0.0/28 `
+  --min-instances=2 `
+  --max-instances=10
+
+```
