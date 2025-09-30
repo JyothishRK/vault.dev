@@ -19,6 +19,11 @@ gcloud functions deploy organisation --runtime=nodejs20 --trigger-http --allow-u
 gcloud functions deploy globals --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --env-vars-file=env.deploy --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
 ```
 
+### 3. Policy
+
+```
+gcloud functions deploy policy --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --env-vars-file=env.deploy --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
+```
 ## SQS:
 ### 1. Sails-Notify
 
