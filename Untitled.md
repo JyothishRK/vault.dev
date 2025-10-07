@@ -1,4 +1,4 @@
-# Key Features Comparison: `organisationUsersList` vs `selectAllUsers`
+ # Key Features Comparison: `organisationUsersList` vs `selectAllUsers`
 
 ## **1. organisationUsersList** - Comprehensive User Management API
 
