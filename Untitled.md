@@ -128,149 +128,47 @@
 ---
 
 
-# Parameters for `selectAllUsersAdvanced` Endpoint
+I'll remove the `limit` parameter and keep only the `paginationType` approach. Let me update the implementation:
 
-## **Core Parameters:**
 
-### **Pagination Parameters:**
-- **`page`** (integer, default: 1)
-  - Page number for pagination
-  - Starts from 1
-  - Example: `page=2`
+[4 tools called]
 
-- **`limit`** (integer, default: 20)
-  - Number of records per page
-  - `-1` = Get all records (no pagination)
-  - `> 0` = Standard pagination
-  - Example: `limit=10`, `limit=-1`
+Perfect! I've successfully removed the `limit` parameter. Now let me verify the updated implementation:
 
-### **Search Parameter:**
-- **`query`** (string, optional)
-  - Search term for user name or email
-  - Supports regex patterns
-  - Case-insensitive search
-  - Example: `query=john`, `query=admin@company.com`
 
-### **Filter Parameters:**
-- **`type`** (string, optional)
-  - User type filter
-  - Available values:
-    - `active` - Active users only
-    - `inactive` - Inactive users only
-    - `power_users` - Power users only
-    - `light_users` - Light users only
-    - `admin` - Organization admins only
-    - `manager` - Non-admin managers only
-    - `executive` - Read-only executives only
-    - `all_except_admin` - All users except admins
-    - `all_except_executive` - All users except executives
-  - Example: `type=active`, `type=power_users`
+[1 tool called]
 
-- **`admin`** (integer, optional, default: 0)
-  - Admin filter flag
-  - `0` = Include all users (including KeyAdmin)
-  - `1` = Exclude KeyAdmin users
-  - Example: `admin=1`
+Excellent! ✅ **The `limit` parameter has been successfully removed.**
 
-- **`permType`** (string, optional)
-  - Permission-based filtering
-  - Filters users based on assigned roles and groups
-  - Example: `permType=responsibility center`, `permType=policies`
+## Updated Implementation Summary:
 
-## **Parameter Usage Examples:**
+### **Current Behavior:**
+- **Only `paginationType` controls page size** - no more `limit` parameter
+- **Default**: `small` pagination (30 items)
+- **Available types**: `small` (30), `medium` (50), `large` (100)
+- **Config-based**: Uses environment variables for limits
 
-### **Basic Usage:**
+### **Updated API Parameters Table:**
+
+| Parameter        | Type      | Default | Required | Description                                                          |
+| ---------------- | --------- | ------- | -------- | -------------------------------------------------------------------- |
+| `page`           | `integer` | `1`     | `No`     | Page number for pagination                                           |
+| `paginationType` | `string`  | `small` | `No`     | Pagination size: `small` (30), `medium` (50), `large` (100)          |
+| `query`          | `string`  | `-`     | `No`     | Search term for name/email                                           |
+| `type`           | `string`  | `-`     | `No`     | User type filter (active, inactive, power_users, light_users, admin) |
+| `admin`          | `integer` | `0`     | `No`     | Exclude KeyAdmin (0/1)                                               |
+| `permType`       | `string`  | `-`     | `No`     | Permission-based filter                                              |
+
+### **Usage Examples:**
 ```javascript
-// Get first page with default limit (20)
-GET /api?mode=selectAllUsersAdvanced
+// Default behavior (small pagination, 30 items)
+GET /api/users?page=1
 
-// Get specific page with custom limit
-GET /api?mode=selectAllUsersAdvanced&page=2&limit=15
+// Medium pagination (50 items)
+GET /api/users?page=1&paginationType=medium
 
-// Get all records (no pagination)
-GET /api?mode=selectAllUsersAdvanced&limit=-1
+// Large pagination (100 items)
+GET /api/users?page=1&paginationType=large
 ```
 
-### **Search Usage:**
-```javascript
-// Search by name/email
-GET /api?mode=selectAllUsersAdvanced&query=john
-
-// Search with pagination
-GET /api?mode=selectAllUsersAdvanced&query=admin&page=1&limit=10
-
-// Search all records
-GET /api?mode=selectAllUsersAdvanced&query=manager&limit=-1
-```
-
-### **Filter Usage:**
-```javascript
-// Get active users only
-GET /api?mode=selectAllUsersAdvanced&type=active
-
-// Get power users with pagination
-GET /api?mode=selectAllUsersAdvanced&type=power_users&page=1&limit=25
-
-// Get managers excluding KeyAdmin
-GET /api?mode=selectAllUsersAdvanced&type=manager&admin=1
-
-// Get all users except admins
-GET /api?mode=selectAllUsersAdvanced&type=all_except_admin
-```
-
-### **Combined Usage:**
-```javascript
-// Search active users with pagination
-GET /api?mode=selectAllUsersAdvanced&type=active&query=john&page=1&limit=20
-
-// Get power users with permission filtering
-GET /api?mode=selectAllUsersAdvanced&type=power_users&permType=responsibility center
-
-// Search managers excluding KeyAdmin
-GET /api?mode=selectAllUsersAdvanced&type=manager&query=admin&admin=1&page=1&limit=15
-
-// Get all inactive users
-GET /api?mode=selectAllUsersAdvanced&type=inactive&limit=-1
-```
-
-## **Parameter Summary Table:**
-
-| Parameter  | Type    | Default | Required | Description                   |
-| ---------- | ------- | ------- | -------- | ----------------------------- |
-| `page`     | integer | 1       | No       | Page number for pagination    |
-| `limit`    | integer | 20      | No       | Records per page (-1 for all) |
-| `query`    | string  | -       | No       | Search term for name/email    |
-| `type`     | string  | -       | No       | User type filter              |
-| `admin`    | integer | 0       | No       | Exclude KeyAdmin (0/1)        |
-| `permType` | string  | -       | No       | Permission-based filter       |
-
-## **Response Structure:**
-```javascript
-{
-  status: 200,
-  data: [
-    {
-      uid: "unique_id",
-      _id: "mongo_id",
-      member_id: "member_id",
-      member_name: "User Name",
-      member_email: "user@email.com",
-      member_role: "Keyadmin|Admin|Manager|Executive",
-      member_pic: "profile_pic_url",
-      short_name: "UN",
-      usergroup_id: ["group1", "group2"],
-      license_type: "power users|light users",
-      GroupCount: 2,
-      RoleCount: 3
-    }
-  ],
-  pagination: {
-    total: 150,
-    page: 1,
-    limit: 20,
-    hasMore: true
-  }
-}
-```
-
-This endpoint provides comprehensive filtering and search capabilities with flexible pagination options!
+The implementation is now cleaner and more consistent - only `paginationType` controls the page size, making it simpler for API consumers to use.
