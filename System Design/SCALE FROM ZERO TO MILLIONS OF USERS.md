@@ -58,3 +58,56 @@
 - **Better Performance:** Reads distributed across slave nodes, writes handled by master → more queries processed in parallel  
 - **Reliability:** Data replicated across multiple locations → protected against server failures or disasters  
 - **High Availability:** Website remains operational even if one database goes offline, as data is accessible from other servers  
+
+---
+# Content Delivery Network (CDN)
+
+A **CDN (Content Delivery Network)** is a geographically distributed network of servers designed to deliver **static content** efficiently.  
+These servers cache assets like **images, videos, CSS, and JavaScript files** to reduce latency and improve load times.
+
+---
+
+## How CDN Works
+When a user visits a website:
+- The **CDN server closest to the user** (based on geographic location) delivers static content.
+- The **shorter the distance**, the **faster the response time**.
+
+Example:
+- If CDN servers are in *San Francisco*, users in *Los Angeles* will experience faster load times than users in *Europe*.
+
+> Dynamic content caching (based on path, query strings, cookies, headers, etc.) is an advanced concept and not covered here.
+
+---
+
+## Considerations When Using a CDN
+
+### 1. Cost
+- CDNs are managed by third-party providers and charge for **data transfers** (inbound & outbound).  
+- Avoid caching **rarely used assets** — it adds cost without meaningful benefit.
+
+### 2. Cache Expiry
+- Important for **time-sensitive content**.  
+- Expiry time must balance between **freshness** and **efficiency**:
+  - Too long → outdated content may be served.  
+  - Too short → frequent reloads from the origin server.
+
+### 3. CDN Fallback
+- Plan for **CDN outages**.  
+- Applications should:
+  - Detect CDN failures.
+  - Fetch resources directly from the **origin server** when needed.
+
+### 4. Invalidating Files
+You can remove or refresh cached files **before expiry** by:
+
+- **Using CDN APIs** → Invalidate specific objects.
+- **Using Object Versioning** → Change file URLs with a version parameter.
+
+Example:
+```text
+image.png?v=2
+```
+
+---
+
+
