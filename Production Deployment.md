@@ -28,7 +28,7 @@ gcloud functions deploy policy --runtime=nodejs20 --trigger-http --allow-unauthe
 ### 1. Sails-Notify
 
 ```
-gcloud functions deploy me-2-prod-queue--sails-notify --runtime=nodejs20 --trigger-topic=me-2-prod-queue--data-sync --region=me-central2 --entry-point=sailsNotifyPubSub --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --set-env-vars STAGE=gcp-prod --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
+gcloud functions deploy me-2-prod-queue--sails-notify --runtime=nodejs20 --trigger-topic=me-2-prod-queue--data-sync --region=me-central2 --entry-point=sailsNotifyPubSub --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
 ```
 
 ### 2. Report-Download-Excel
@@ -36,3 +36,8 @@ gcloud functions deploy me-2-prod-queue--sails-notify --runtime=nodejs20 --trigg
 ```
 gcloud functions deploy report-download-excel --runtime=nodejs20 --trigger-topic=me-2-prod-queue--report-download-excel --region=me-central2 --entry-point=reportDownloadExcelPubSub --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --set-env-vars STAGE=gcp-prod --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
 ```
+
+
+gcloud functions deploy me-2-prod-queue--user-bulk-upload --runtime=nodejs20 --trigger-topic=me-2-prod-queue--user-bulk-upload --region=me-central2 --entry-point=BulkUserCreatePubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
+
+gcloud functions deploy me-2-prod-cron--bulk-user-create --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --env-vars-file=env.deploy --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
