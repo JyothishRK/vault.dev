@@ -1,4 +1,4 @@
-
+	
 ---
 ## NotifySails - me-2-uat-queue--sails-notify
 
@@ -34,11 +34,11 @@ gcloud functions deploy me-2-uat-queue--user-profile-update-delete --runtime=nod
 Report Download Excel
 
 ```
-gcloud functions deploy report-download-excel --runtime=nodejs20 --trigger-topic=me-2-uat-queue--report-download-excel --region=me-central2 --entry-point=reportDownloadExcelPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
+gcloud functions deploy report-download-excel --runtime=nodejs20 --trigger-topic=me-2-uat-queue--report-download-excel --region=me-central2 --entry-point=reportDownloadExcelPubSub --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --set-env-vars STAGE=gcp-uat --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
 ```
 
 Report Download PDF
 
 ```
-gcloud functions deploy report-download-pdf --runtime=nodejs20 --trigger-topic=me-2-uat-queue--report-download-pdf --region=me-central2 --entry-point=reportDownloadPdfPubSub --source=. --env-vars-file=env.deploy --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
+gcloud functions deploy report-download-pdf --runtime=nodejs20 --trigger-topic=me-2-uat-queue--report-download-pdf --region=me-central2 --entry-point=reportDownloadPdfPubSub --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --set-env-vars STAGE=gcp-uat --vpc-connector=me-2-uat-vpc-conn-redis --egress-settings=private-ranges-only
 ```
