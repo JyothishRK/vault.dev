@@ -10,7 +10,7 @@ SECRET_NAME: me-2-prod-secrets
 ## 1. Organisation:
 
 ```
-gcloud functions deploy organisation --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --set-env-vars STAGE=gcp-prod --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
+gcloud functions deploy organisation --runtime=nodejs20 --trigger-http --allow-unauthenticated --region=me-central2 --entry-point=handler --source=. --set-build-env-vars=NPM_CONFIG_LEGACY_PEER_DEPS=true --vpc-connector=me-2-prod-vpc-connector --egress-settings=private-ranges-only
 ```
 
 ## 2. Globals:
