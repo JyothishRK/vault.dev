@@ -1,302 +1,214 @@
-Perfect! That's an excellent enhancement to handle the "get all records" scenario. Let me integrate this improved pagination logic into the complete endpoint:
 
-```javascript
-const selectAllUsersAdvanced = async (event) => {
-    try {
-        // Extract core parameters
-        var org_id = parseInt(event.requestContext.authorizer.organisation_id);
-        let page = ((event.queryStringParameters.page != undefined) ? parseInt(event.queryStringParameters.page) : 1);
-        let limit = ((event.queryStringParameters.limit != undefined) ? parseInt(event.queryStringParameters.limit) : 20);
-        let query = ((event.queryStringParameters.query != undefined) ? event.queryStringParameters.query : '');
-        let type = ((event.queryStringParameters.type != undefined) ? event.queryStringParameters.type : '');
-        const admin = ((event.queryStringParameters.admin != undefined) ? parseInt(event.queryStringParameters.admin) : 0);
-        let permissionType = ((event.queryStringParameters.permType != undefined) ? event.queryStringParameters.permType : '');
-        
-        let member_query_obj = { "organisation_id": org_id, trash_flag: 0 };
-        let organization_details = await OrgSchema.findOne({ organisation_id: org_id }, { organisation_admin: 1, member_id: 1 });
+---
 
-        // Apply type filters (simplified)
-        switch (type) {
-            case "active": {
-                member_query_obj.delete_flag = 1;                
-            }
-                break;
-            case "inactive": {
-                member_query_obj.delete_flag = { $in: [0, 2, 3] };
-            }
-                break;
-            case "power_users": {
-                member_query_obj.license_type = "power users";
-                member_query_obj.delete_flag = 1;
-                member_query_obj.trash_flag = 0;
-            }
-                break;
-            case "light_users": {
-                member_query_obj.license_type = "light users";
-                member_query_obj.delete_flag = 1;
-                member_query_obj.trash_flag = 0;
-            }
-                break;
-            case "admin": {
-                let organization_admin_arr = ((organization_details != null) ? organization_details.organisation_admin : []);
-                member_query_obj.member_id = { $in: organization_admin_arr };
-            }
-                break;
-            case "manager": {
-                let organization_admin_arr = ((organization_details != null) ? organization_details.organisation_admin : []);
-                if (organization_details != null) {
-                    organization_admin_arr.push(organization_details.member_id)
-                }
-                member_query_obj.read_only_flag = 0;
-                member_query_obj.member_id = { $nin: organization_admin_arr };
-            }
-                break;
-            case "executive": {
-                member_query_obj.read_only_flag = 1;
-            }
-                break;
-            case "all_except_admin": {
-                let organization_admin_arr = ((organization_details != null) ? organization_details.organisation_admin : []);
-                if (organization_details != null) {
-                    organization_admin_arr.push(organization_details.member_id)
-                }
-                member_query_obj.member_id = { $nin: organization_admin_arr };
-                member_query_obj.delete_flag = 1;
-            }
-                break;
-            case "all_except_executive": {
-                member_query_obj.read_only_flag = 0;
-                member_query_obj.delete_flag = 1;
-            }
-                break;
-            default:
-                member_query_obj.delete_flag = 1;
-                break;
-        }
+# ✅ **1. High-Level Architecture (GCP)**
 
-        // Apply search functionality
-        if (query) {
-            query = query.replace(/\s\s+/g, ' ').trim();
-            query = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
-            query = query.replace(/\s+/g, '.*') 
-            
-            let search_query = [
-                { member_name: { $regex: query, $options: 'i' } }, 
-                { member_email: { $regex: query, $options: 'i' } }
-            ];
-            Object.assign(member_query_obj, { "$or": search_query });
-        }
+```
+API Endpoint (Node.js / Express)
+        ↓
+Publish message → GCP Pub/Sub Topic
+        ↓
+Subscriber (Cloud Function / Cloud Run)
+        ↓
+Execute Trigger Operation (Role Update, Group Create, etc.)
+        ↓
+Update Trackers Collection
+```
 
-        // Apply permission-based filtering
-        if(permissionType){
-            if(query){
-                Object.assign(member_query_obj, { "$and": [{'$or': member_query_obj['$or']} ]});
-            }
-            const permission_obj = await permissionBasedMembersList(event, permissionType);
-            member_query_obj['$or'] = [];
-            if(permission_obj && permission_obj.rolesList.length){
-                member_query_obj['$or'].push({
-                    "roles.roleName" : {
-                        $in: permission_obj.rolesList
-                    }
-                })
-            }
-            if(permission_obj && permission_obj.groupList.length){
-                member_query_obj['$or'].push({
-                    "usergroup_id": {
-                        $in: permission_obj.groupList
-                    }
-                })             
-            }
-            if(query){ 
-                member_query_obj['$and'].push({
-                    "$or": member_query_obj['$or']
-                })
-                delete member_query_obj['$or'];
-            }
-            if(!query){
-                if(!member_query_obj['$or'].length){
-                    delete member_query_obj['$or'];
-                }
-            } 
-        }
+This gives you:
 
-        // Pagination logic - using frontend provided page and limit
-        let count_members = await MemberSchema.countDocuments(member_query_obj);
-        let skipRecords = (limit === -1) ? 0 : limit * (page - 1);
+✔ decoupled  
+✔ scalable  
+✔ retry-safe  
+✔ event-driven automation
 
-        // Lightweight fields
-        let member_query_fileds = { 
-            uid: 1, member_name: 1, organisation_id: 1, member_id: 1, 
-            read_only_flag: 1, member_email: 1, _id: 1, delete_flag: 1, 
-            profile_pic: 1, license_type: 1, usergroup_id: 1, roles: 1,
-            group_count: 1, role_count: 1
-        };
+---
 
-        // Fetch data with pagination
-        let queryBuilder = MemberSchema.find(member_query_obj, member_query_fileds)
-            .populate('roles.roleId')
-            .lean();
+# ✅ **2. Generalised Pub/Sub Message Format**
 
-        if (limit !== -1) {
-            queryBuilder = queryBuilder.skip(skipRecords).limit(limit);
-        }
+We must design a _universal_ message payload so ANY trigger can use it:
 
-        let memberDtls = await queryBuilder;
+```json
+{
+  "triggerName": "Trigger_t_member",
+  "eventType": "member.update",
+  "documentId": "65f89d12ab3c21",
+  "before": {},
+  "after": {},
+  "payload": {}, 
+  "initiatedBy": "system|user",
+  "timestamp": "2025-11-18T12:30:00Z",
+  "traceId": "uuid-123",
+  "retryCount": 0
+}
+```
 
-        // Process results with precise response like getAllUsers
-        var OrgUsersArr = [];
-        if (memberDtls.length > 0) {
-            var admin_Arr = ((organization_details != null) ? organization_details.organisation_admin : []);
-            
-            for (let i = 0; i < memberDtls.length; i++) {
-                if (lodash.size(memberDtls[i]) > 0) {
-                    let member_role_no = 0;
-                    let member_role = "";
-                    if (lodash.size(organization_details) > 0) {
-                        if (parseInt(organization_details.member_id) === parseInt(memberDtls[i].member_id)) {
-                            member_role = "Keyadmin";
-                            member_role_no = 1;
-                        } else if (memberDtls[i].read_only_flag == 0) {
-                            if (lodash.size(admin_Arr) > 0 && admin_Arr.includes(parseInt(memberDtls[i].member_id)) == true) {
-                                member_role = "Admin";
-                                member_role_no = 2;
-                            } else {
-                                member_role = "Manager";
-                                member_role_no = 3;
-                            }
-                        } else if (memberDtls[i].read_only_flag == 1) {
-                            member_role = "Executive";
-                            member_role_no = 4;
-                        }
-                    }
+### Explanation:
 
-                    // Determine license type
-                    let license_type = (memberDtls[i] && memberDtls[i].license_type) ? memberDtls[i].license_type : "";
-                    if (memberDtls[i] && memberDtls[i].roles) {
-                        const powerUser = memberDtls[i].roles.find(u => u.roleId && u.roleId.licenseType && u.roleId.licenseType.toLowerCase() == 'power users');
-                        if (powerUser) {
-                            license_type = powerUser.roleId.licenseType;
-                        } else {
-                            license_type = 'light users';
-                        }
-                    }
+|Field|Purpose|
+|---|---|
+|**triggerName**|Identifies source trigger (role, member, group)|
+|**eventType**|Standardized event name (`member.create`, `role.update`, etc.)|
+|**documentId**|The `_id` which changed in Mongo|
+|**before/after**|Optional; diff of the update|
+|**payload**|Full API payload if needed by consumer|
+|**initiatedBy**|Who performed the action|
+|**timestamp**|Event time|
+|**traceId**|For debugging/log correlation|
+|**retryCount**|Increment on Pub/Sub dead-letter retries|
 
-                    // Precise response structure like getAllUsers
-                    OrgUsersArr.push({
-                        "uid": memberDtls[i].uid,
-                        "_id": memberDtls[i]._id,
-                        "member_id": memberDtls[i].member_id,
-                        "member_name": memberDtls[i].member_name,
-                        "member_email": memberDtls[i].member_email,
-                        "member_role": member_role,
-                        "member_pic": memberDtls[i].profile_pic,
-                        "short_name": Globals.ShortName(memberDtls[i].member_name),
-                        "usergroup_id": memberDtls[i].usergroup_id,
-                        "license_type": license_type,
-                        "GroupCount": (memberDtls[i] && memberDtls[i].group_count) ? memberDtls[i].group_count : 0,
-                        "RoleCount": (memberDtls[i] && memberDtls[i].role_count) ? memberDtls[i].role_count : 0
-                    });
-                }
-            }
-            
-            // Sort by role hierarchy
-            OrgUsersArr = ((OrgUsersArr.length > 0) ? lodash.orderBy(OrgUsersArr, ['member_role_no'], ['asc']) : []);
-            
-            // Apply admin filter
-            if (admin) {
-                OrgUsersArr = OrgUsersArr.filter((item) => item.member_role.toLowerCase() !== 'keyadmin');
-            }
-            
-            // Pagination response
-            const pagination = {
-                total: count_members,
-                page,
-                limit,
-                hasMore: (limit === -1) ? false : (skipRecords + limit) < count_members
-            };
-            
-            return {
-                status: 200,
-                data: OrgUsersArr,
-                pagination: pagination
-            };
-        } else {
-            return {
-                status: 200,
-                data: [],
-                pagination: {
-                    total: 0,
-                    page: page,
-                    limit: limit,
-                    hasMore: false
-                }
-            };
-        }
-    } catch (error) {
-        console.log("Error in selectAllUsersAdvanced", error)
-        return {
-            status: 500,
-            data: error
-        };
+---
+
+# ✅ **3. Tracker Collection (Generalized + Scalable)**
+
+This will track completion status of _any_ trigger event.
+
+### **Collection name:** `trigger_tracker`
+
+### ✔ **Schema (Generalized)**
+
+```json
+{
+  "_id": "uuid",
+  "triggerName": "Trigger_t_member",
+  "eventType": "member.update",
+  "documentId": "65f89d12ab3c21",
+  "status": "completed | pending | failed | retrying",
+  "attempts": 1,
+  "error": null,
+  "messageRefId": "pubsub-message-id",
+  "createdAt": "2025-11-18T12:30:00Z",
+  "updatedAt": "2025-11-18T12:30:20Z"
+}
+```
+
+### Status Lifecycle:
+
+|Status|Meaning|
+|---|---|
+|**pending**|Message published but not processed yet|
+|**retrying**|Consumer failing; retry in progress|
+|**completed**|Event processed successfully|
+|**failed**|All retries exhausted|
+
+---
+
+# ✅ **4. Publisher (Inside API code)**
+
+Whenever a DB operation occurs, API will publish:
+
+```js
+const message = {
+  triggerName: "Trigger_t_member",
+  eventType: "member.update",
+  documentId: doc._id.toString(),
+  before: previousData,
+  after: updatedData,
+  payload: requestBody,
+  initiatedBy: userId || "system",
+  timestamp: new Date().toISOString(),
+  traceId: uuid(),
+  retryCount: 0
+}
+
+await pubsub.topic("vc-trigger-events").publishMessage({
+  json: message
+});
+```
+
+And create a **tracker entry** immediately:
+
+```js
+await TriggerTracker.create({
+  _id: message.traceId,
+  triggerName: message.triggerName,
+  eventType: message.eventType,
+  documentId: message.documentId,
+  status: "pending",
+  attempts: 0,
+  createdAt: new Date(),
+});
+```
+
+---
+
+# ✅ **5. Consumer (Cloud Function / Cloud Run)**
+
+The consumer picks, processes, and updates status.
+
+### Generic Consumer Logic:
+
+```js
+exports.handleTriggerEvent = async (message) => {
+  const data = JSON.parse(Buffer.from(message.data, 'base64').toString());
+
+  const { triggerName, eventType, documentId, traceId } = data;
+
+  try {
+    // Mark tracker as retrying/pending
+    await TriggerTracker.updateOne(
+      { _id: traceId },
+      { $inc: { attempts: 1 }, status: "retrying" }
+    );
+
+    // Route to handler
+    await routeEvent(triggerName, eventType, data);
+
+    // Mark as completed
+    await TriggerTracker.updateOne(
+      { _id: traceId },
+      { status: "completed", updatedAt: new Date() }
+    );
+
+  } catch (err) {
+    const attempts = await TriggerTracker.findOne({ _id: traceId }).attempts;
+
+    if (attempts >= 5) {
+      // Hard fail
+      await TriggerTracker.updateOne(
+        { _id: traceId },
+        { status: "failed", error: err.message }
+      );
+    } else {
+      throw err; // Allow Pub/Sub retry
     }
+  }
 };
 ```
 
-## **Enhanced Pagination Features:**
+---
 
-### **✅ Flexible Pagination:**
-- **`limit = -1`**: Returns ALL records (no pagination)
-- **`limit > 0`**: Standard pagination with skip/limit
-- **`limit = 0`**: Default behavior (20 records per page)
+# ✅ **6. Routing Logic (Generalized)**
 
-### **✅ Usage Examples:**
+Every event goes through one centralized router:
 
-```javascript
-// Get all records (no pagination)
-GET /api?mode=selectAllUsersAdvanced&limit=-1
+```js
+async function routeEvent(triggerName, eventType, data) {
 
-// Standard pagination
-GET /api?mode=selectAllUsersAdvanced&page=1&limit=10
+  const handlerMap = {
+    "Trigger_t_member": {
+      "member.create": handleMemberCreate,
+      "member.update": handleMemberUpdate,
+      "member.activate": handleMemberActivation,
+      "member.unsubscribeToSubscribe": handleMemberSubscribe
+    },
+    "Trigger_vc_roles": {
+      "role.create": handleRoleCreate,
+      "role.update": handleRoleUpdate,
+      "role.activate": handleRoleActivation
+    },
+    "Trigger_vc_usergroups": {
+      "group.create": handleGroupCreate,
+      "group.update": handleGroupUpdate,
+      "group.activate": handleGroupActivation
+    }
+  };
 
-// Search all records
-GET /api?mode=selectAllUsersAdvanced&query=john&limit=-1
+  const handler = handlerMap?.[triggerName]?.[eventType];
 
-// Get all power users
-GET /api?mode=selectAllUsersAdvanced&type=power_users&limit=-1
+  if (!handler) throw new Error(`No handler found for: ${triggerName} → ${eventType}`);
 
-// Paginated search
-GET /api?mode=selectAllUsersAdvanced&query=admin&page=2&limit=15
-```
-
-### **✅ Response Structure:**
-
-**With Pagination (`limit > 0`):**
-```javascript
-{
-  status: 200,
-  data: [...],
-  pagination: {
-    total: 150,
-    page: 1,
-    limit: 20,
-    hasMore: true
-  }
+  return handler(data);
 }
 ```
 
-**Get All Records (`limit = -1`):**
-```javascript
-{
-  status: 200,
-  data: [...],
-  pagination: {
-    total: 150,
-    page: 1,
-    limit: -1,
-    hasMore: false
-  }
-}
-```
-
-This enhancement makes the API much more flexible - perfect for scenarios where you need all records for dropdowns/selectors, while still supporting efficient pagination for large datasets!
