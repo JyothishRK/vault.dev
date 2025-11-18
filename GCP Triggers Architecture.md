@@ -199,7 +199,7 @@ Acts as a **recovery layer** for:
   "triggerName": "string",              // e.g., Trigger_t_member
   "eventType": "string",                // e.g., member.update
   "documentId": "string",               // Mongo ID of the record
-
+  "organisation_id" : number,
   "payload": {},                        // Dynamic JSON for processing
 
   "status": "pending | processing | retrying | completed | failed",
@@ -207,7 +207,6 @@ Acts as a **recovery layer** for:
   "maxAttempts": 5,
 
   "locked": false,                      // Prevents concurrent processing
-  "lastError": "string|null",
 
   "createdAt": "ISODate",
   "updatedAt": "ISODate"
