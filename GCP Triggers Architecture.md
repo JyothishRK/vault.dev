@@ -1,19 +1,18 @@
 
 ---
-# 📘 **Architecture Document — Trigger Processing Pipeline (Pub/Sub + Tracker + Cron Worker)**
 
 ## **1. Overview**
 
-This architecture enables reliable, scalable, event-driven automation for system triggers such as:
+This architecture enables reliable and scalable event-driven automation for system triggers such as:
 
-- Member Create / Update / Activate / Deactivate / Subscription Activate
+- Member: Create, Update, Activate, Deactivate, Subscription Activate
     
-- Role Create / Update / Activate / Deactivate
+- Role: Create, Update, Activate, Deactivate
     
-- Group Create / Update / Activate / Deactivate
+- Group: Create, Update, Activate, Deactivate
     
 
-The architecture ensures:
+It ensures:
 
 - Asynchronous processing
     
@@ -23,7 +22,7 @@ The architecture ensures:
     
 - High scalability
     
-- Auditability
+- Full auditability
     
 - Safe recovery through a Cron Worker
     
@@ -59,9 +58,7 @@ Executes the same trigger handler
 Updates tracker (completed / retrying / failed, locked=false)
 ```
 
-The **Pub/Sub Consumer handles real-time processing**  
-The **Cron Worker handles failed or missed tasks**  
-Both share the same logic and locking rules.
+![[Pasted image 20251119144224.png]]
 
 ---
 
@@ -69,20 +66,20 @@ Both share the same logic and locking rules.
 
 ## **3.1 API Layer**
 
-- Creates a tracker entry (`pending`, `attempts=0`)
+- Creates a tracker entry (pending, attempts=0)
     
-- Publishes event to Pub/Sub topic
+- Publishes an event into Pub/Sub
     
-- No processing happens in the API layer
+- Does **not** execute business logic
     
 
-Ensures API response speed and decoupling.
+This keeps API response times fast and decoupled from processing.
 
 ---
 
 ## **3.2 Tracker Collection**
 
-This stores:
+Stores:
 
 - Task metadata
     
@@ -90,86 +87,76 @@ This stores:
     
 - Attempts count
     
-- Lock state
+- Full payload
     
-- Payload needed for processing
-    
-- Error history
-    
-
-It serves as the **single source of truth** for the entire pipeline.
 
 ---
 
 ## **3.3 Pub/Sub Topic**
 
-- Asynchronous event delivery mechanism
+- Delivers events asynchronously
     
 - Supports large-scale distributed execution
     
-- Provides at-least-once delivery
+- Provides _at-least-once_ delivery
     
-- Does **not** handle retries; retries are controlled by tracker
+- Retries are controlled by the Tracker—not Pub/Sub
     
 
 ---
 
 ## **3.4 Pub/Sub Consumer (Cloud Function / Cloud Run)**
 
-### _Responsibilities:_
+### **Responsibilities**
 
-1. Receive the Pub/Sub message
+1. Receive Pub/Sub message
     
-2. Atomically **lock** the tracker entry
+2. Atomically lock the tracker entry
     
-3. If lock fails → another worker is processing → **ACK & exit**
+3. If lock fails → another worker is processing → ACK & exit
     
-4. Execute the event handler
+4. Execute trigger handler
     
 5. Update tracker
     
-6. Unlock (locked=false)
+6. Unlock
     
 
-### _Why locking is critical?_
+### **Why locking is critical?**
 
 Prevents:
 
-- Duplicate processing
+- Duplicate execution
     
-- Cron + consumer collision
+- Cron vs Consumer collisions
     
-- Horizontal scaling conflicts
+- Multi-instance conflicts when autoscaling
     
 
 ---
 
 ## **3.5 Cron Worker (Runs Every 2 Minutes)**
 
-### _Purpose:_
+### **Purpose**
 
-Acts as a **recovery layer** for:
+Recovery mechanism for:
 
-- Messages lost by Pub/Sub
+- Missed Pub/Sub messages
     
-- Messages that failed in consumer
+- Failed consumer executions
     
-- Messages stuck due to processing errors
+- Stuck tasks
     
-- Pending tasks missed by consumer (cold start, timeouts, failures)
+- Cold start or timeout issues
     
 
-### _Workflow:_
+### **Workflow**
 
-1. Query tracker for tasks:
+1. Query tracker for:
     
-    ```
-    status in (pending, retrying)
-    AND locked=false
-    AND attempts < maxAttempts
-    ```
+    `status in (pending, retrying) AND locked = false AND attempts < maxAttempts`
     
-2. Attempt to lock the task (`locked=true`)
+2. Attempt lock
     
 3. If lock succeeds → process
     
@@ -178,119 +165,136 @@ Acts as a **recovery layer** for:
 5. Unlock
     
 
-### _Guarantees:_
+### **Guarantees**
 
-- Full durability
-    
 - No task is left unprocessed
     
-- No task is executed twice
+- No duplication
     
-- Retry logic stays consistent
+- Full reliability even when Pub/Sub fails
     
 
 ---
 
-# **4. Tracker Schema (Minimal + Scalable + Lock-safe)**
+# **4. Tracker Schema (Minimal, Stable & Lock-Safe)**
 
-```json
+
+
+This schema remains stable even as new triggers are added.
+
+### Payload structure:
+
+```
 {
-  "_id": "string",                      // UUID traceId
-  "triggerName": "string",              // e.g., Trigger_t_member
-  "eventType": "string",                // e.g., member.update
-  "documentId": "string",               // Mongo ID of the record
-  "organisation_id" : number,
-  "payload": {},                        // Dynamic JSON for processing
+  "_id": "string",
+  "triggerName": "string",
+  "eventType": "string",
+  "documentId": "string",
+  "organisation_id": number,
+  "payload": {},
 
-  "status": "pending | processing | retrying | completed | failed",
+  "status": "pending | in-progress | completed | failed",
   "attempts": 0,
   "maxAttempts": 5,
-
-  "locked": false,                      // Prevents concurrent processing
 
   "createdAt": "ISODate",
   "updatedAt": "ISODate"
 }
 ```
 
-This schema stays stable even if 100 new triggers are added.
+### Example Payloads:
+
+```
+{
+  "subTasks": null | {
+    "items": ["string"],
+    "currentIndex": 0
+  }
+}
+```
+- User:
+    
+```
+{
+  "subTasks": null
+}
+```
+
+
+- Group:
+    
+
+```
+{
+  "subTasks": {
+    "items": ["member_11", "member_22", "member_33"], //_ids will be stored
+    "currentIndex": 0
+  }
+}
+```
+
+- Roles:
+    
+
+```
+{
+  "subTasks": {
+    "items": [                     // _ids of the respective collection
+      "6745b92f6c1eaa331df81201",
+      "6745b92f6c1eaa331df81277",
+      "6745b92f6c1eaa331df81333"
+    ],
+    "currentIndex": 0
+  }
+}
+```
 
 ---
 
 # **5. State Machine for Reliability**
 
-```
-pending (locked=false)
-        ↓ lock
-processing (locked=true)
-        ↓ unlock
-completed (locked=false)
-retrying (locked=false)
-failed (locked=false)
-```
+Retries continue until:
 
-The task stays eligible for retry until:
+`attempts >= maxAttempts`
 
-```
-attempts >= maxAttempts
-```
-
-After that, it's **failed permanently**.
+After that, the task becomes permanently **failed**.
 
 ---
 
-# **6. Why Cron + Pub/Sub Consumer Together?**
+# **6. Why Use Both Pub/Sub Consumer and Cron Worker?**
 
-|Responsibility|Pub/Sub Consumer|Cron Worker|
+|   |   |   |
 |---|---|---|
-|Real-time processing|✅ Yes|❌|
-|Guaranteed retry|❌ (not reliable)|✅ Yes|
+|Responsibility|Pub/Sub Consumer|Cron Worker|
+|Real-time execution|✅|❌|
+|Guaranteed retry|❌|✅|
 |Recovery from lost messages|❌|✅|
-|Exponential scaling|✅|Limited|
-|Safety against duplicates|Via locking|Via locking|
-|Ensures all pending tasks are processed|❌|✅|
+|Horizontal scaling|✅|Limited|
+|Protection against duplicates|Via locking|Via locking|
+|Ensures all pending tasks finish|❌|✅|
 
-### Together:
+### **Combined Result:**
 
-➡ Real-time speed **and** guaranteed reliability.
-
----
-
-# **7. Example Processing Flow**
-
-### When everything works normally:
-
-```
-API → Tracker (pending) → Pub/Sub → Consumer → Completed
-```
-
-### When consumer fails:
-
-```
-API → Tracker (pending)
-        ↓
-Pub/Sub → Consumer → error → retrying
-        ↓
-Cron picks retrying → processes → completed
-```
-
-### When Pub/Sub drops message:
-
-```
-API → Tracker (pending)
-        ↓
-Cron (2 min later) picks pending → processes → completed
-```
-
-### When consumer & cron run at same time:
-
-```
-Consumer tries to lock → succeeds
-Cron tries to lock → fails (locked=true)
-Cron skips
-```
+✔ Real-time performance + ✔ Guaranteed reliability + ✔ Zero data loss
 
 ---
 
-    
+# **7. Example End-to-End Scenarios**
 
+### **Normal Flow**
+
+`API → Tracker (pending)      → Pub/Sub → Consumer → Completed`
+
+### **Consumer Fails**
+
+`API → Tracker (pending)      → Pub/Sub → Consumer → Error → retrying      → Cron picks → completed`
+
+### **Pub/Sub Drops Message**
+
+`API → Tracker (pending)      → Cron picks after 2 mins → completed`
+
+### **Consumer & Cron Try Same Task**
+
+`Consumer locks → Cron lock fails → Cron skips`
+
+---
