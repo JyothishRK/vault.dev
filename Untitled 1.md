@@ -214,3 +214,30 @@ async function routeEvent(triggerName, eventType, data) {
 
 ---
 
+**Resource Links:**
+
+A complete Roadmap you can follow throughout the month: [https://roadmap.sh/ai-engineer](https://roadmap.sh/ai-engineer "https://roadmap.sh/ai-engineer")
+
+More Guides:
+
+- Basics:  [https://www.tableau.com/data-insights/ai/what-is](https://www.tableau.com/data-insights/ai/what-is "https://www.tableau.com/data-insights/ai/what-is")
+- Timeline & In-depth: [https://medium.com/@amitvsolutions/artificial-intelligence-101-the-complete-beginners-guide-to-arti…](https://medium.com/@amitvsolutions/artificial-intelligence-101-the-complete-beginners-guide-to-artificial-intelligence-99b357949940 "https://medium.com/@amitvsolutions/artificial-intelligence-101-the-complete-beginners-guide-to-artificial-intelligence-99b357949940")
+
+**Extras for interest:**
+
+- Generative Pre-trained Transformers:
+    1. [https://www.datacamp.com/tutorial/how-transformers-work](https://www.datacamp.com/tutorial/how-transformers-work "https://www.datacamp.com/tutorial/how-transformers-work")
+    2. [https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-generative-pre-trained-transf…](https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-generative-pre-trained-transformer-gpt/ "https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-generative-pre-trained-transformer-gpt/")
+    3. Extra: Deep Dive in Base Transformer Architecture: [Attention is all you need by Ashish Vaswani et al](https://arxiv.org/abs/1706.03762 "https://arxiv.org/abs/1706.03762")
+- Current Trends in AGI & AI Agents: [https://agilayer.com/cutting%E2%80%91edge-trends-in-agi-ai-agents-june-2025/](https://agilayer.com/cutting%E2%80%91edge-trends-in-agi-ai-agents-june-2025/ "https://agilayer.com/cutting%e2%80%91edge-trends-in-agi-ai-agents-june-2025/")
+- NGENT: [https://arxiv.org/html/2504.21433](https://arxiv.org/html/2504.21433 "https://arxiv.org/html/2504.21433")
+- Emotion AI: [https://research.aimultiple.com/affective-computing/](https://research.aimultiple.com/affective-computing/ "https://research.aimultiple.com/affective-computing/")
+- Basic CNN Model Project to visualize the process: [https://colab.research.google.com/drive/1bTf3KAUy5heMrKgfIxABE1VTMEKdQRds?usp=sharing](https://colab.research.google.com/drive/1bTf3KAUy5heMrKgfIxABE1VTMEKdQRds?usp=sharing "https://colab.research.google.com/drive/1btf3kauy5hemrkgfixabe1vtmekdqrds?usp=sharing")
+
+**Next Session SneakPeak:**
+
+- [https://medium.com/@meenn396/differences-between-llm-deep-learning-machine-learning-and-ai-3c7eb1c8…](https://medium.com/@meenn396/differences-between-llm-deep-learning-machine-learning-and-ai-3c7eb1c87ef8 "https://medium.com/@meenn396/differences-between-llm-deep-learning-machine-learning-and-ai-3c7eb1c87ef8")
+
+AI Engineer Roadmap
+
+Step by step guide to becoming an AI Engineer in 2025
