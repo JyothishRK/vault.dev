@@ -1,108 +1,42 @@
-**2. System Load Metrics**  
-Tracks the _load on the OS_.  
-Monitor:  
+### Example commands with ranges
 
-- **Load average (1m, 5m, 15m)**
-- **Runnable processes**
-- **Blocked processes** (D state)
-- **Zombie processes**
+All commands run from `src/` with env loaded (e.g. `.env.development` or `.env.uat`).
 
-These reveal:  
+- **Full file (default behavior)**  
+  ```bash
+  sails run update-user-emails
+  ```
 
-- Thread exhaustion
-- Disk I/O blocking
-- Kernel-level stalls
+- **Dry run on full file (no DB writes)**  
+  ```bash
+  sails run update-user-emails --dryRun=true
+  # or
+  DRY_RUN=1 sails run update-user-emails
+  ```
 
-**3. I/O & File System Operations (Beyond simple disk usage)**  
-Monitor:  
+- **Use a custom Excel file**  
+  ```bash
+  sails run update-user-emails --excelPath=scripts/data/kfshrc/user_email_mapping.xlsx
+  # or
+  EXCEL_PATH=/path/to/file.xlsx sails run update-user-emails
+  ```
 
-- **Disk I/O wait %**
-- **Read/write IOPS**
-- **Disk queue length**
-- **File descriptor usage**
-- **Inode usage**
-- **Filesystem errors**
-- **Mount failures / unmounted partitions**
+- **First 500 data rows only**  
+  ```bash
+  sails run update-user-emails --endRow=500
+  ```
 
-These catch:  
+- **Rows 501 to 1000 (inclusive)**  
+  ```bash
+  sails run update-user-emails --startRow=501 --endRow=1000
+  ```
 
-- Disk bottlenecks
-- Exhausted file handles
-- FS corruption
+- **Row 1000 to end of file**  
+  ```bash
+  sails run update-user-emails --startRow=1000
+  ```
 
-**4. Process & Resource Limits**  
-Monitor:  
-
-- **Top resource-hogging processes**
-- **Number of running processes**
-- **Open file limits (ulimit)**
-- **Context switches (high = problem)**
-- **Thread count**
-
-These help detect:  
-
-- Leaky processes
-- Fork bombs
-- High context switching
-
-**5. Kernel & OS Health**  
-Monitor:  
-
-- **Kernel errors in syslog**
-- **OOM-killer events**
-- **Kernel panics**
-- **Segfaults**
-- **System reboots**
-- **Dmesg warnings**
-
-Catches:  
-
-- Kernel crashes
-- Unstable drivers
-- Hardware errors
-
-**7. System Availability Metrics**  
-Monitor:  
-
-- **Server uptime**
-- **Reboot counts**
-- **Unreachable periods**
-- **Cloud instance status checks (AWS, GCP, Azure)**
-
-E.g., AWS EC2 has:  
-
-- System status check
-- Instance status check
-
-**9. Virtualization/Hypervisor Metrics (Cloud-specific)**  
-Monitor:  
-
-- **Steal time (CPU steal%)**
-- **Hypervisor throttling**
-- **Burst credit usage (AWS T-series)**
-
-High steal time = noisy neighbor issue.**10. Backup & Storage Health**  
-Monitor:  
-
-- **Backup success/failure**
-- **Snapshot age & consistency**
-- **Volume performance tier**
-- **Storage attachment errors (EBS, GCP PD)**
-
-
-
-
-
-
-
-----
-- CPU Utilization
-- Memory Usage
-- Disk space usage
-- Top resource hogging processes
-- No of running processes
-- Health
-	- Server Uptime
-	- Reboot count
-	- Unreachable periods
-- 
+- **Dry run on a specific range**  
+  ```bash
+  sails run update-user-emails --dryRun=true --startRow=1 --endRow=100
+  ```
