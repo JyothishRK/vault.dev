@@ -120,6 +120,82 @@ Key Points:
         4. Wrap up
  ^Mg0Vamzn
 
+• Understand the problem and establish the design scope.
+        ○ Clarify requirements and assumptions
+                § Understand the exact requirements
+        ○ Clarifications:
+                § Use cases
+                § Features
+                § Scale
+                        □ In-app metrics
+                        □ Traffic volume - DAU
+                § Tech clarifications
+        ○ Important to understand requirements and clarify ambiguities.
+ ^EKE0KSxJ
+
+• Propose high-level design and get buy-in
+        ○ Initial blueprint for the design
+                § Ask feedback and collaborate.
+        ○ Draw box diagrams with key components.
+        ○ Do back of the envelope calculations to evaluate the scale constraints.
+        ○ Go through few use cases to check feasibility.
+
+
+
+ ^k3sNIEtI
+
+• Design deep dive:
+        ○ Identify and prioritize components in the architecture.
+                ○ System performance characteristics:
+                        § Focus on bottlenecks and resource estimations.
+                ○ Details of some design components
+                        § URL Shortener:
+                                □ Hash function
+                        § Chat system
+                                □ Reduction of latency
+                                □ Support offline/online status.
+        ○ Don't get carried away on minute details
+ ^AEHew5I9
+
+        • Wrap up:
+                ○ Identify bottlenecks and discuss potential improvements
+                ○ Recap of the design
+                ○ Error cases:
+                        § Server failure
+                        § Network loss
+                ○ Monitoring metrics and error logs
+                ○ Handling next scale of users
+                        § Changes to be made in the system to handle higher volume of customers.
+                
+ ^9hwxZTUP
+
+        • Dos
+                ○ Always ask for clarification. Do not assume your assumption is correct.
+                ○ Understand the requirements of the problem.
+                ○ There is neither the right answer nor the best answer. A solution designed to solve the
+                ○ problems of a young startup is different from that of an established company with millions
+                ○ of users. Make sure you understand the requirements.
+                ○ Let the interviewer know what you are thinking. Communicate with your interview.
+                ○ Suggest multiple approaches if possible.
+                ○ Once you agree with your interviewer on the blueprint, go into details on each
+                ○ component. Design the most critical components first.
+                ○ Bounce ideas off the interviewer. A good interviewer works with you as a teammate.
+                ○ Never give up.
+
+        • Don’ts
+                ○ Don't be unprepared for typical interview questions.
+                ○ Don’t jump into a solution without clarifying the requirements and assumptions.
+                ○ Don’t go into too much detail on a single component in the beginning. Give the high-
+                ○ level design first then drills down.
+                ○ If you get stuck, don't hesitate to ask for hints.
+                ○ Again, communicate. Don't think in silence.
+                ○ Don’t think your interview is done once you give the design. You are not done until your
+                ○ interviewer says you are done. Ask for feedback early and often.
+ ^DYoBMaDD
+
+## Embedded Files
+5068417d03bd99416554a6c2b28465ba3ab6c970: [[Pasted Image 20260409172835_982.png]]
+
 %%
 ## Drawing
 ```compressed-json
@@ -217,10 +293,78 @@ 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
 
-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
+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
 
-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
+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
 
-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
+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
+
+gAgqEAA=
 ```
 %%
