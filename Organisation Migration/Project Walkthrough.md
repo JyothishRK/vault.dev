@@ -1,0 +1,103 @@
+---
+
+excalidraw-plugin: parsed
+tags: [excalidraw]
+
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
+
+
+# Excalidraw Data
+
+## Text Elements
+- Sails Architecture:
+---
+* MVC
+* Models
+* App Init (Run modes & Datastores.js)
+* Routes
+* Middleware & Usage in the Controller file
+* Route -> Controller -> Action
+* Permission Revamp (Action)
+* Error Handling (Refer Policy APIs)
+* 3 Run modes:
+    - API
+    - Worker
+    - Cron
+* Structure:
+    - Payload extraction
+    - Validation
+    - Action Steps
+    - Trigger worker (If additional business logic present)
+        - Create event payload
+        - Use queue service
+        - Send request
+            - Worker picks based on event and logic (Background logic)
+* Crons:
+    - Cron.js - Cron init and scheduler.
+    - Based on logic - trigger the respective worker logic.
+* Cache service
+* Eslintrc config
+* SQL file
+    - Setting up DB
+* Development Setup:
+    - Documentation will be shared.
+* Deprecation of legacy Organization data fetch through Mongo (Action)
+
+- Documentation:
+---
+* Models:
+    - OneNote : Backend > Organization > Organization Models
+
+- Action Items:
+---
+* Kickstart Tech Spec for Organization APIs
+* Documentation:
+    - OneNote: Backend > Organization > Organization APIs
+* For Pagination & Filter:
+    - Policy Controller
+ ^deFoUiec
+
+Organization V2.0
+----- ^f40KFouM
+
+%%
+## Drawing
+```compressed-json
+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
+```
+%%
