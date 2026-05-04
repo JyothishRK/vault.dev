@@ -61,8 +61,8 @@ views:
       - complete_instances
       - file.tasks
     sort:
-      - property: tasknotes_manual_order
-        direction: DESC
+      - property: due
+        direction: ASC
     options:
       columnWidth: 280
       hideEmptyColumns: false
