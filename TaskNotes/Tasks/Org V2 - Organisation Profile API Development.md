@@ -4,9 +4,9 @@ status: open
 priority: normal
 scheduled: 2026-05-05
 dateCreated: 2026-05-05T16:20:52.349+05:30
-dateModified: 2026-05-08T12:49:48.029+05:30
+dateModified: 2026-05-12T21:44:26.111+05:30
 tags:
   - task
-due: 2026-05-15
+due: 2026-05-13
 ---
 
