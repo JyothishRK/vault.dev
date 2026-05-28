@@ -1,0 +1,46 @@
+---
+
+excalidraw-plugin: parsed
+tags: [excalidraw]
+
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
+
+
+# Excalidraw Data
+
+## Text Elements
+Deployment plans:
+- Angular Repos:
+    - Separate base branch for env setup
+    - Only Base url changes required in config
+- React App
+    - Same branch deployment
+    - Env file changes
+- Sails BE
+    - Same branch deployment
+    - Env file changes
+ ^TNfhI3Va
+
+%%
+## Drawing
+```compressed-json
+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
+```
+%%
