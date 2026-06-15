@@ -1,0 +1,113 @@
+---
+
+excalidraw-plugin: parsed
+tags: [excalidraw]
+
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
+
+
+# Excalidraw Data
+
+## Text Elements
+Hi {{first_name}},
+
+Here’s your personalized meal plan for today.
+
+🎯 Daily Goal
+Calories: 2,000 kcal
+Diet: Vegetarian
+Protein Target: 120g
+
+⸻
+
+🍳 Breakfast (8:00 AM)
+Vegetable Oats Upma
+
+* Oats (80g)
+* Mixed vegetables (100g)
+* Curd (100g)
+
+Calories: 450 kcal
+Protein: 20g
+
+⸻
+
+🥗 Lunch (1:00 PM)
+Dal Rice Bowl
+
+* Brown rice (150g)
+* Dal (200g)
+* Mixed vegetable salad
+
+Calories: 650 kcal
+Protein: 30g
+
+⸻
+
+☕ Evening Snack (5:00 PM)
+Protein Smoothie
+
+* Milk (250ml)
+* Banana (1)
+* Peanut butter (15g)
+
+Calories: 300 kcal
+Protein: 20g
+
+⸻
+
+🍽️ Dinner (8:00 PM)
+Paneer & Roti
+
+* Paneer curry (150g)
+* Whole wheat roti (3)
+
+Calories: 600 kcal
+Protein: 50g
+
+⸻
+
+📊 Daily Summary
+Calories: 2,000 kcal
+Protein: 120g
+
+💡 Tip of the Day
+Drink at least 2.5 liters of water and try to walk for 20 minutes after dinner.
+
+Have a healthy day!
+
+— Team NutriSathi ^UFN2tLrx
+
+%%
+## Drawing
+```compressed-json
+N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBGABZtAGYaOiCEfQQOKGZuAG1wMFAwMogSbggAVQAxADkeKAAZUkx0sshYRCqoLCgO8va0Z0T4gE5tHkSANjmAdgAGebGJ
+
+lP5ymG5nHnmAVm0ZvZ4UxJT9jcgKEnVueMWADnjtef3VxJOH8aPLqQRCZTSO5LRa/azKYLcUHFARQUhsADWCAAwmx8GxSFUAMTxBC43GDSCaXDYBHKeFCDjEVHozESOHWZhwXCBXKEiAAM0I+HwAGVYJCJIIPOzmHDEQgAOo3STcPgwiBi+FI/kwQXoYWVX4UwEccL5NDxX5sZnYNRbQ2LaGdCDk4RwACSxANqAKAF1fhzyNkndwOEIeb9CFSsFV
+
+cIt2RSqXrmC7/YGFWEEMQ7ikjuM9k9Hr9GCx2FxDQ8c0xWJx6pwxHc9qc04seON5TbCMwACKZPoptAcghhX6aYRUgCiwWyuTjAfwvyEcGIuA7wKeeySjxS8R41vKRA4CL9E9+6NJye43fwvYVfUwAwkAAlCKhgMAuSwoAB9Di4bIAX0/1AAOhx/2vJgEEATAJmFQGBhFIVBEBYTgCEIIxk1QbICBg/BrFQDkMVQKA2FnGBtH/f9AB4NwB6/dQFtc
+
+G5GBUAAcTYAh/2RAgMUIcI0D4K1FlQBF3H/Ft2KgNAADUEGUBAolIJx/wABXhPpg1QAAVFkJOE1A10WZRiI4QBuOl0kjAGd91AACFAlwBFuzFVAAAoHmQK1UAAQQAWQASn/MT1NwTRglQAB5OdwOqOB9FwXSACpAuCuyHm0zyOGi1zCEwZDGB8vzwjs+4Ev/aLkREYgcqtZREuY1jpI41BEj2Hi+KYjh5LYRSOE47TdIMgCOEAPg3AHVd1BmkpbB
+
+JByxyeNkjyBLQgAlcwEDMtgKHwKKzPhCgOFQaSxByuqyvyyi0Ns9c8qS1AUrS4qMsk3z/OYAhcGIXSWNpdj5FQI56v4pqFP+NrUBSDruq6/9AFQyVBB0YDhg2UVBeXfUk7L2cbUEmxLmtauH9DYFrJHY1aUvwBE7J4Or9HwRLotM6waZyynUZCf0oFQTQhBkJhdv27qXrY6rAa+xqMb+9qdOBwzAF99wB4P8o4M9Wg+yUbRuTrAQDmADJUBmlrCF
+
+W2SVY57ARFIWjbPiPb6clSQ0QWihJBCZmFLvWyUnKjgeaq96ZichqVp+lrhdQPbOt0wBeDcAKZ3DpouGhH0cLjYq17qq473vqF4NDXXUX/xDwBCnZUwg4FQNgOVwu3DpgATpO3VA51QYJQmZuI9jrtQSyLkuKDnDnrGKuFaLw1BO6JrCcPXFDgzZ7LcA5PpoMcDg5aI7rr1wRga9QO2CHUWiCIAQl0wAUAhUkJ9FQeo2ek3k5zxyNKGU/oqlve9H
+
+0IZ83w/BBvz/ZfgLAiCoJgiWeCRAkLFVQvgdCmFsLQTwgRJepEKJUSjgxRq7s3qcWoNxXi31BKSVEuJG60lrByV+kpVSpB1IZyBv+EGHBjJrRCFZBucUUZuUSt5G6WUYp5FQKFcKq0go8PsqdZKqV0oEKiFlcCptSr00KqQYqMjToJ15u9WqAtfZp3+pnYO3V+qDWGqNU2ispocCohAuaO1TJLV9gdcyS1NrbQWqbc2B1zEk1kQdC64jMp3Qek9b
+
+mlV0EfTqtgwWpD/qAyzvpXS4NIY5BhnDBGxNbLIyckrP2mNeTY1xvjbqojh7HTJhTOxNN3x0wOrJRmbMWZs1npzV2aC+Yp3Cf7dOvBqExO6iRKWMsF4cwVuk0xes9Tq01trXW+toKG1IMbXaIjUCW2toPTeDttZ2Rds9IJ1UvYaJIW0/6QcxbdXDpHfAtFeQxzjhXN22z3rJz2ZkgOWlom53zoXYupcFpURuS2KuxNa71xsk3Fus9wKfM7vUnuuE
+
+5kDyHsTaBHTx5MynjPDm89F66RXmvXAG8Qj4G3qgPeh9j4fjPhfQgV91CEHZNhXIvJELiA6Z6TgUBagfhotwIs55+jOSIMoAs6Bggz3ZLmKA5gCB8oBIK6AJp2R6FyNROWvo0DxknAqNi/gCD30vI/O8D4nxinfl+H8WLf7gUgiIQBcF3wgOQuAyBm1EWwNwIRQyiDqLnPooxX2TT7mYJab7XBGkOFSRkk8shak8GaR0cc0iJlzKMOsszQZPE2Fe
+
+QkbdBagiQphQivk7h0j4pc1EZdVA11JHBGkblEtqB5GKJrY0u5aB1FhM0REkWuj/z6KGhwEaY0hmJXcZYha1jlqrXsRtLa815m1vccdTxZ1vFXUzVw+6GEAkqI9mgT6bb9mtTQFErtHA4lQ0SfDEkKS0kTWGRErGONqUIAJtyFJpNFjk3ptTd85TTb0yqdYGprN2byzNlzLdwT+Z7ojdozptCenS0Ev0+WDlB3K1GdBDWWtxWTPQ6gGZcyXELKWf
+
+5W29strrOdk2xOntA37oDkcmhocI5IK9Zc2OLIbl+owVgn2dH2kvNDnnZSBd25fPLpXYMALmZAsbtoZuRAwWichd3KkML+5sEHgQBFo8eL6Ann0cC096kYqYPAjg2KFq4s3gSyQO9XX726kfe+ZLz5wkpdfGlYI2ZsBmuERlx4ewIH3MGBAQEARAkNFMPYxRPzgA9HQXAcA4D8i7twUoXQ7bZCqPyoEGwGDsQoNTUkdpKTUjRBibEHIqvVcGBAfD
+
+OQoAOj6PofkyoUTlbpOgHEeIeu1fq7kJrWQitkijGV2kvRyAcCZCyBrfWjYNcG/oWo3I+QCiZYqNEWpih1fmwN5rrWJTSmILcDB23+uNf2+KFUa2qiahTHl87i2tZ+EkDGF0Rozu7Yu1kAKppzR3CtA9r7i3aisvZXp85XKgezIW810H9L/PtWh6yb7+gdVQClQK7LCARXI9h1kFLpAMezKWpvTsqA1V4721kQcVJnIk9I49MMDO5sw+p/oen61l
+
+LwHW6N2rzBsDwh5AADW4OMM22hFh7BmA2dc3w9h7HmOsbbAuhf4AAJrcBmE8F4PB4gzBSIDJ4iRliNkgEYHG+g0sKnoAQIQTLFipGrDwXYMWqeo+e9GfUVQ+d5fJCQBlSE5QbltNJYg/IEBwG4HsP3YfXL4QQLTrN5OTxnnKP7sbFW0DpcgNY/A5OIAUOJMdeI8xqC8FL+XvXZfUCO72O5dkvnlABhZD75QxeTigl4IDKvPfa9yYb27z7bOoAHaR
+
+L98VnBxwJnKF6D+vmQxV2UNbm0ORk/cDhPb342AiBR7QJvoLCp3xZf36QLfGq2ZbiZQfof5Q7AACsEDYDyBeuA8fiCJ/fFlFPgW8sknFYwMpDjPgCvuUN0OtmEMEM/vmPKkIGKAYNzj0KqnuAqAeEiD/qeIfjaF6AYLyJkNAZwAFpgfuA3M5NAYAcAbuDyDFuAD+HQFyFWmlrFp+EAA=
+```
+%%
