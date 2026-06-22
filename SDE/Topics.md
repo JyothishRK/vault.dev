@@ -1,0 +1,89 @@
+---
+
+excalidraw-plugin: parsed
+tags: [excalidraw]
+
+---
+==⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠== You can decompress Drawing data with the command palette: 'Decompress current Excalidraw file'. For more info check in plugin settings under 'Saving'
+
+
+# Excalidraw Data
+
+## Text Elements
+Node.js
+
+* How does Node.js handle concurrent requests?
+* What is the Event Loop?
+* Difference between process.nextTick(), setImmediate(), setTimeout()?
+* What are Promises and async/await?
+* How do you handle errors globally in Node.js?
+* How do you structure a production-grade Node.js application?
+
+REST APIs
+
+* Difference between PUT and PATCH?
+* What HTTP status codes do you commonly use?
+* How do you secure APIs?
+* How do you implement pagination?
+* How would you version APIs?
+
+Authentication
+
+Since your project uses JWT:
+
+* What is JWT?
+* How is JWT different from sessions?
+* What are JWT access and refresh tokens?
+* How do you invalidate JWTs? ^oNhVbAi0
+
+JavaScript:
+----
+- Fundamentals:
+    * Global Execution Context
+    * Function Execution Context
+    * Call Stack ...
+- JS Async Programming
+- Event Loop
+- Node.js core concepts
+- Express/Sails.js
+- REST APIs
+- Authentication
+- Backend Architecture
+ ^1rSrIwdJ
+
+%%
+## Drawing
+```compressed-json
+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
+```
+%%
