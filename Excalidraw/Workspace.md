@@ -611,6 +611,32 @@ Postgres Rollback: ^1wDsuNNX
 Jo - 8 + 22 + 11 + 8 + 12 + 10 + 5 + 4 + 18 + 16 + 14 + 6 + 16 + 22
 Rushi - 12 + 24 + 15 + 6 + 8 + 34 + 5 + 10 + 6 + 14 + 18 + 7 + 6 ^yQnTfvxk
 
+CI/CD Setup - PF3 UAT:
+    - Branch protection - Angular
+    - Vc web app
+    - Vc api
+    - Slack notification Setup
+    - Engineers Onboarding
+
+CI/CD Setup - PF2 UAT:
+    - Angular modules (Analysis)
+    - Vc api
+    - Slack notification setup
+    - Engineers Onboarding
+
+GCP Cost Optimization
+    - Analysis
+    - Action Items
+
+AWS Cost Optimization
+    - Analysis
+    - PF4 Cleanup ^nsM5N00J
+
+AWS Cost Optimization:
+    - PF4 Cleanup
+    - Automatic Start/Stop for PF3 UAT - Migration
+    -  ^CVYzfNru
+
 ## Embedded Files
 d76546810cdb45414f6fdc66e2c3efeeac3b10e8: [[Pasted Image 20260709114827_344.png]]
 
@@ -1043,14 +1069,24 @@ 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
 
-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
+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
 
-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
+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
 
-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
+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
 
-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
+N0B3HowkMJggsLn/EJrnUcGyCRGeSm+ckxnicLCh9UwkFrwYrr/MFGRqyYWBG4BAEQJCKFKy9YOPSqrv/EwJg1dL0PUUT+N6i/8HWc+rkNd51FIUxro4AsjghA+yC8sUFjoyP3AddrAAyUvRk+032k2km0XDdIEEjdPlmjdxymcwjroyUpklEcIQFtA6/UsZMLjNdJhKtd/4k5M/SEldJOmldD1iVdiaRtVimXrdKrtrk6rrfJWrp4sxzj9dprgN
 
-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
+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
 ```
 %%
