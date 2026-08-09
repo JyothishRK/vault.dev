@@ -669,6 +669,38 @@ PF4 Cleanup:
     - PDF box for migration (Need verification)
      ^cZeAq0vA
 
+House clean
+Air fryer clean
+Throw eatables:
+    - Lemon
+    - Onion
+    - Beetroot
+    - Coriander
+    - Chilli
+    - Ginger garlic paste
+    - Vegetable waste
+    - Plastic waste
+Cook:
+    - Brinjal fry
+
+Packing
+    - Clothes
+        - 2 jeans (1 wear)
+        - 4 t shirts
+        - 4 inners
+    - Hygiene
+        - Brush
+        - Trimmer + Charger
+        - Makeup ( In bag - very imp)
+    - Electronics
+        - 2 Phones + Charger
+        - 2 Laptops + Charger
+        - Earphones + Headphones
+        - Joystick
+        - Hard disk
+    - Misc
+        - Alchemist ^X9KUVIDZ
+
 ## Embedded Files
 d76546810cdb45414f6fdc66e2c3efeeac3b10e8: [[Pasted Image 20260709114827_344.png]]
 
@@ -1127,16 +1159,26 @@ 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
 
-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
+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
 
-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
+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
 
-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
+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
 
-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
+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
 
-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
+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=
 ```
 %%
