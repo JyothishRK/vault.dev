@@ -701,6 +701,24 @@ Packing
     - Misc
         - Alchemist Book ^X9KUVIDZ
 
+10 Aug:
+----
+
+Pending work:
+    - PF4 + App migration UAT - Resources termination
+    - RDS Snapshots deletion post termination
+    - Auto start/stop resume for UAT
+
+Today's Items:
+    - Deprecation Plan document for platforms:
+        - App Staging
+        - Platform UAT
+
+Auto Start Platform:
+    - Remove Platform UAT from automation
+    - Replace it with Central UAT - instance ID
+    -  ^SsKzcPMS
+
 ## Embedded Files
 d76546810cdb45414f6fdc66e2c3efeeac3b10e8: [[Pasted Image 20260709114827_344.png]]
 
@@ -1175,10 +1193,16 @@ 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
 
-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
+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
 
-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
+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
 
-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
++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=
 ```
 %%
