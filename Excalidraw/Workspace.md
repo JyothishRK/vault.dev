@@ -800,8 +800,40 @@ Tickets:
 ----
 
 - Startup script mod for all 3 platforms - 12 Aug - 3 SP + 1 documentation
-- CI/CD Implementation - EPIC
-    - Onboarding of ppl ^2uSLDieB
+- CI/CD Implementation for UAT Environments- EPIC
+* PF2 - GCP env - me-central2, PF3 - AWS env - us-east-1
+    - CI/CD Angular Implementation - PF3 UAT - 5 SP - Rushitha - 12 Aug
+    - CI/CD React Implementation - PF3 UAT - 1 SP - Me - 13 Aug
+    - CI/CD Sails Implementation - PF3 UAT - 1 SP - Me - 13 Aug
+    - CI/CD Angular Implementation - PF2 UAT - 5 SP - Me - 14 Aug
+    - CI/CD React Implementation - PF2 UAT - 1 SP - Rushitha - 14 Aug
+    - CI/CD Sails Implementation - PF2 UAT - 1 SP - Rushitha - 14 Aug
+
+
+---
+
+- Infra Activities & Cost Optimizaiton EPIC:
+    - Review and Stop Stale Ec2 instances - 13 Aug - Rushitha - 2 SP
+    - Check for stale resources from bot suggestions & documentation - 13 Aug - Jyothish - 2 SP
+    - Stale resources removal - 14 Aug - Jyothish - 1 SP
+    - Start script modification for PF1 UAT EC2 Instance - 12 Aug - Rushitha - 1 SP 
+    - Start script modification for PF2 UAT EC2 Instance - 12 Aug - Rushitha - 1 SP 
+    - Start script modification for PF3 UAT EC2 Instance - 12 Aug - Jyothish - 1 SP 
+
+- Here the start script mod is for making sure all docker container restart post UAT restart acitivity
+- 2nd and 3rd activities are interlinked - the action will be taken post review
+
+- Infra Activities & Cost Optimizaiton EPIC:
+    - Review of the Admin panel Infrastructure setup - 1 SP - Rushitha - 13 Aug
+    - Review of the Admin panel Architecture - 1 SP - Jyothish - 13 Aug
+    - Infrastructure changes for Admin panel - 2 SP - Rushitha - 13 Aug
+    - Infrastructure cleanup post changes for Admin panel - 2 SP - Jyothish - 13 Aug
+ ^2uSLDieB
+
+- Infra Activities & Cost Optimization EPIC:
+    - Enable Branch protection for vc-uat branch across all Repositories - 2 SP - Rushitha - 14 Aug
+    - Enable Branch protection for vc-prod-base branch across all Repositories - 2 SP - Jyothish - 14 Aug
+    - Enable Branch protection for vc-prod branch across all Repositories - 2 SP - Jyothish - 14 Aug ^CMyy934U
 
 ## Embedded Files
 d76546810cdb45414f6fdc66e2c3efeeac3b10e8: [[Pasted Image 20260709114827_344.png]]
@@ -1321,14 +1353,40 @@ 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
 
-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
+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
 
-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
+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
 
-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
+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
 
-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
+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
 
-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=
+Qhb17uU70ejU7U0g07TiJXpxAAIgLGCdTN3eb8ahHmS75BqUWXaw76MrY7cHcA7b3YH0oyI8DX3cXQZICdThSQpQEKXfI6LCE7YXYcRnXYh7nHb7VUnf+7dzkySLBIwbcPbBt1gFAzNUvR7GXfB7V9Eh7wqY4QHIAJ775DwTqcnAsRPbebJPZ+75PZ87WHY87mPeOZ2PYQ7lRVdU+GT71AGHcbI7cG7CNqEJP6Cnb2KbK7fgF3lQnaXbGKZIoQmv
+
+KsvHdV7MEDhTWoT3bfTEPbbQGPb5BKY7Z7cEsj7fu117YIAt7ePA97evMj7bxZL7a/0hHdA0xHYg9DvpJqlPbB7InakbCHZo73ajo7zvec7aLC/bgnYo72HYF7eHf+jSTmQ79Hb47rvcg7XXb8CBnZx7vqHKsTvc3bEHYE77vdD7hvnRYHHZ97XHdo7R0kcwMfc17kTcz7aPdD7nvZC7yfbXb3Hb+EGvc/bpHYzTLHYq7yPep7onYQ74neu7ePZk
+
+7S3YaLCnc+9T3figKnde7P4nDTmnYqb2nYbAunYFTM7dw7RnYp7UXdd9ZneIZHvss76PpdctnaAg8LZzLjnZXbLnfn7GPa87xnYx57ros7AXY37IvBcLuffS7vPeP7FfdP7zlgG7lzfq76ikS703uS7/UVxtPkFa7Cvdb7vcoT7NXZzkeXdf78ykS7mfea7Fet/7c7ar7D/dMjZ/dq7L/dAbb/cK7TXa/7qXegH7nY67/PZB7XhjQFITlXFiA6gb
+
+naDXMsEdG7UqfG7u6km7jRmm7Oclm78Ynm7rcjBDeVemUNUrW766A27K8nsrDRd277WENLh3diwx3Zz1p3fLcF3f2QV3bfwsAQ4Qvfbyr/fdqEg/ZS9z3dU7BvfU70PY+7Ikm+7CPdAzf3YZ7gPaNFuHtwH//aq7uHah7ERnUHnok0HZPZ/QSPbmSTECfAcA6P7EXfD7Qovp7aUD0H/+OJ7lg6dTi/dB7civb7Jg7p75AF0Hdg6ujhbuVI+yDZ7q
+
+6AsH8PasHJ/awHfPe87rncF7DTcUJTTZ6L8zoRr+nI8rmCeaR8Yv7bDGlF7NvoubxA9urJFN3UsvZ7TP2kwH1ZCV7zkBV7JDjic3agb7fgYbTO7ZmF1Yv3brYH17hvbvxp7bMw57buDl7ecAFvfwAVvdhkD7cGHT7bPpDve7UafY/baHbI7P7d8HlXfb73vYj7Kfe4s/vfT7jHfQ7Dg7D7NPZr7jQ+esUmZL7jffj7ew5z7Bw/z7kfdfbWWWaH/H
+
+cWHlPcuHHffWHtfcL73ImL7Afdj7Qfab7DmZb7VPZE7efdeHRw43k9w7j75fcMHAI+r7nfbfwA+EWF0g7u7cg8e7ig+H7L3ZUHpg5nkifq07Hvun7teFn7Sfb/7UI58HpnaR95nbX7F/dytljS37BTYc7y7Zd7QfaSHc7bv7Tg+57NXf87zybh4X3B/QN/ba7zI6x7IPaAHnckl7BXdCkSXZ3b6A9K71Q6JHuA8FHmFiQHXaDAHhXYgHEo5a7wDD
+
+a7sA5lHPzmAHwo4a7qA5sykA5dEUo75HOA+q7kg967fNurTQo/lHpA5G77lIoH75Am7RjbAEtA8iw4Fjm7KuYW7zA7VAK3fYHPyE4H2Zb77O3ffIe3Yhj8ZYEH+KCEHS4twS53fCHFqHDT3fYRH3A/k78g919B7qUHo/YfM73d6RGg5iHv3bx7wQ8ySwPf+HGo8ZHGI5h7WwY57Wg+sHsyRR79g8hHxo8SHAQ/3TQQ7cHIQ8iHOY9J73g+57C/au
+
+HwI50HrY8J75vtjHHg/Z7Xg657b9Z572A8bHtPbxblDsfFNOKsAyEDTAHAGqA1ICSA9ADlI5LcG4pAEkAiaKAlBLxMxeEO6rZ/V120lCpJ/tULaR8yraaxAPzM5Ar6ZxQvyNkIdx1ZR81ubGnsY1Cradj2pLsjuGre2bzDDJeVbd+dVbkpPy5ate7rZKJLb8p1K5hUf1bepu6VMqmuxFZW5zjiU2rEIOVKrxVPYYBfFLjKttrFTHtrN5Z9SwW3db
+
+TWswGYIGaA3jVJm2dapSZ5bwhm8AKg+xJ4S7iSlNJttRw5jD0G3hEntn80dml8HJO5Jfi5g1Z2zyxszbzdezbuhqAn7dZVrxhy7r0rwgnmtZ+B7Ssu+g9beOAObqGXE8o26v11OiRDtwRxK+zuFZ4B7bYIrMhxxGQUrKxH4JXrKfKkHt3aTHD3cU7dGTRHIrnV4/1pQSlbvLFUrqFDwwkKsYTM0A6xnRAwIAucEagszKqDr9jEziHRg/b7QI67dw
+
+wpcn1bqmFDYlIjG1oAxTNB8nGIn8nu6kCnrAHu9DRZ8H8Q/v7VHeuHf1o0t5UogMrk/A9WvY8ndkbUsSU+Knvk/jc0vdZTQU8ynhhYnHOU5ZHLw4filk9okiI+THyI98s9k6ekTk9eY0U7A9sU/KnEOqqnEjRqnqU5/Q6U+CnWU+7HYU8BHtPd9dUU9A9xOhGnq6HinQ2USn3k+qnKU5nFaU9l4s06anlPYbH0I+BHA06KnEjRinLQ86yCFvGnXJ
+
+j2ndU5mnjU7PNzU8cH/I7anKQ7/5sNfAGfRZg17TZbLFk7+7Mg+27Nk4UHvU+UHDk+Wnzk9Wnbk7KnG0+YsXk+Snfk/2n008OnL09Cn0o5eHkU5hnxU+unBwdGn/Zu2nyM9qnAU/RnHE0xnp055H+U/ctuM6unw05unm0/unXekenZM5LIR09enJ06nHZ09nHVmvAAbCE+AfInXVfEDKg0AEPkJkytoswAYAA+iR11a1hApcIVniaOA4IgGQQ/Rk
+
+ZAtJb+Kys8xC90H6Mss4S1dnq1nqs++0V/HchTWkNnOs++06s7I55s9yAas8knUs9q4Rs6yA90VlhNs6gA/Ri8stErdn/RhlESvr1K3s+NnUNdrLxQADnWQE9gv07ZcKs4tnWQGK9CdaLooc/0AiegTrnwCOmIwATn6XXjQVQDOgac8KcQviLyfXmjqPhF9M+TQjbAgAxE9IEI+XUDeK6Kz3pc3N9MmEpBWkJGE67cKZgBAHSgvwBPg7fSfgWAgT
+
+n90WOG52LTnWIBIAiGjxiyBWHnh2u3sUs6Hn4a38wF058SY88FO/2EIsPEiznygDRAmyE5kZpE3nBpsU8qwHqb/wCSgFGVXn684vgW8+RBvAHPnPhAkbPc8dn90CtnoIHTd6yF5YJiSSgHzgcu/2ByAe2qJrwHBhC38+Xp387xIcZVsaPc7sAsFryAXyZTSnSgQAc89cinwE1V/pFCh/Xw9QpU8MgDlMzn5WI06sjXlQKC/HqUFT1VCC97tRUHAA
+
+v2CDmUYlXaRC6KgQAA==
 ```
 %%
