@@ -906,6 +906,29 @@ docker push 520680734372.dkr.ecr.us-east-1.amazonaws.com/prod-vc-mcp:prod_v1.0
 docker pull 520680734372.dkr.ecr.us-east-1.amazonaws.com/prod-vc-mcp:prod_v1.0 && docker stop prod-vc-mcp || true && docker rm prod-vc-mcp || true && docker run -d --name prod-vc-mcp -e REGION=us-east-1 -p 4301:4300 520680734372.dkr.ecr.us-east-1.amazonaws.com/prod-vc-mcp:prod_v1.0 && docker logs -f prod-vc-mcp
  ^bmFOitPV
 
+For repo wise audit checks: Like go through all these repos - do these action - Store result here - With claude for repos.
+This will work no? We can select lowest model and do
+
+
+Prompt:
+---
+You need to perform auditing for my repos.
+These are my repos:
+- A
+- B
+Now for all these repos these are the scans we are planning to do for each repo:
+- Npm audit
+- License check
+- SonarQube
+- Dependency check
+Before starting for each repo. Make sure that you are present in the branch called -> vc-uat
+
+
+
+ ^NP9L0qBd
+
+By the way - I will have to go out today also ^d2xKD7Az
+
 ## Embedded Files
 d76546810cdb45414f6fdc66e2c3efeeac3b10e8: [[Pasted Image 20260709114827_344.png]]
 
@@ -1486,10 +1509,24 @@ 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
 
-PJJIpKNJKRwduG7iX0x1U/WOHqWYwSatkOZhb0zXg3mw66cTXjnk4IcItZkyBQRDfL1HR2zyxqRnHn1v9ju0zb5i7F+uxru3PddWn1Z1K5K+NVhetfVhr3Pjt7S0+5VMCgRsRXfggfFHAkAe+zDbbtrdgr4qqO3i9xUHAAbCE+AfInXVfEDKg0AEPkJkytoswAYAA+iR11a1hApcIQviaOA4IgGQQ/RkZAtJb+KyF8xC90H6MsF4S1dnqwvqF++0
+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
 
-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
+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
 
-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
+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
 ```
 %%
